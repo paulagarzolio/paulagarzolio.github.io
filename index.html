@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>La realidad detrás de las Redes Sociales</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="FirstScene" >
+		<div class="Title">
+			La realidad detrás de las redes sociales
+		</div>
+		<div class="center"></div>
+		<div class="Button" id="button1">
+			<button>PLAY</button>
+		</div>
+	</div>
+	<div id="SecondScene">
+		<div id="lifes"></div>
+		<img src="avatar.png" class="avatar">
+		<img src="circulo.png" class="circulo">
+		<div class="Questions">
+		</div>
+		<div id="levels">
+			<div id="classification"> 
+			</div>
+		</div>
+	</div>
+	<div id="ThirdScene">
+		<div class="result" id="accept"> 
+			<p>I have </p>
+			<img src="accept.png" style="width:30%">
+		</div>
+		<div class="result" id="reject">
+			<p>I haven't </p>
+			<img src="reject.png" style="width:30%">
+		</div>
+		<ol class="cards-list">
+		</ol>
+		
+	</div>
+	
+	<div class="templates">
+		<button class="qu-ans">
+			<img src="">
+			<p> </p>
+		</button>
+		<div class="level">
+			<img src="">
+			<div class="marker"></div>
+			<div class="levelType"></div>
+		</div>
+		<li class="card">
+			<img style="pointer-events: none;">
+			<p class="message"></p>
+		</li>
+	</div>
+	<script src="src/database.js"></script>
+	<script src="src/round2.js"></script>
+	<script src="src/question.js"></script>
+	<script src="src/block.js"></script>
+	<script src="src/level.js"></script>
+	<script src="src/game.js"></script>
+	<script src="src/main.js"></script>
+</body>
+</html>
