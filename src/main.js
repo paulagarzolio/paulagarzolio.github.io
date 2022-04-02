@@ -20,11 +20,11 @@ function initFirstScene(){
 	thirdScene.style.display="none";
 	firstScene.style.display="block";
 	body=query("body");
-	body.style.background="url(GIF_b.gif)"
+	body.style.background="url(background.png)"
 	body.style.backgroundSize="1450px auto";
-	body.style.backgroundColor="#b4dfee";
+	body.style.backgroundColor="#b4f8ff";
 	body.style.backgroundRepeat="no-repeat";
-	body.style.backgroundPosition="center -65px";
+	body.style.backgroundPosition="center 0px";
 	
 }
 

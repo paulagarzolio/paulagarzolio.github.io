@@ -11,39 +11,20 @@
 
 #FirstScene {
 	grid-template-rows: 1fr 2fr 1fr;
-	background-size:20000px auto;
-	background-position: center 0px
+	left:50%;
+}
+.Button:hover{
+	cursor:pointer;
+}
+.portada {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	grid-row: 2/3;
+	width: 800px;
+	top: 35%;
 }
 
-#FirstScene .Title {
-	grid-row:1/2;
-	font-family: 'Titillium Web', sans-serif;
-	background-color:rgb(255,255,255,0.7);
-	text-align: center;
-	display:block;
-	position:center;
-	font-size: 30px;
-	margin:auto;
-	margin-top:20px;
-	width:300px;
-	padding:10px;
-	padding-top:20px;
-	height:90px;
-}
-#FirstScene .center{
-	height:460px;
-}
-#FirstScene .Button{
-	grid-row:2/3;
-	text-align:center;
-}
-#FirstScene .Button button{
-	padding:30px;
-	padding-top:15px;
-	padding-bottom:15px;
-	font-family: 'Titillium Web', sans-serif;
-	font-size:20px;
-}
 #SecondScene {
 	display:none;
 	grid-template-rows:2fr 2fr;
