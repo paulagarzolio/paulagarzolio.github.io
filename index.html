@@ -10,16 +10,21 @@
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div id="FirstScene" >
 		<img src="language.png" class="Button" style="width: 80px;margin: 0px;margin-left: 85%;margin-top: 15px;">
 		<img src="GIF.gif" class="portada">
-		<img src="jugar.png" class="Button" id="button1"style="width:200px;transform: translateY(570%);margin-left: 42%;">
+		<img src="jugar.png" class="Button" id="button1"style="width:180px;transform: translateY(610%);margin-left: 42%;">
 	</div>
-	<div id="SecondScene">
+	<div id ="SecondScene" style="display:none;">
+		<div class="horizontalbar" style="height:80px;display:block;background-color: black;top:0%"></div>
+
+	</div>
+	<div id="Round1">
 		<div id="lifes"></div>
-		<img src="avatar.png" class="avatar">
+		<img src="avatar.png" class="avatar_">
 		<img src="circulo.png" class="circulo">
 		<div class="Questions">
 		</div>
@@ -28,7 +33,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="ThirdScene">
+	<div id="Round2">
 		<div class="result" id="accept"> 
 			<p>I have </p>
 			<img src="accept.png" style="width:30%">
@@ -47,6 +52,8 @@
 			<img src="">
 			<p> </p>
 		</button>
+		<div class="info">
+		</div>
 		<div class="level">
 			<img src="">
 			<div class="marker"></div>
@@ -56,6 +63,17 @@
 			<img style="pointer-events: none;">
 			<p class="message"></p>
 		</li>
+		<div id="avatars" style="display:none">
+			<div id="avatar1" class="avatar" >
+				<img src="avatars/avatar1.png">
+			</div>
+			<div id="avatar2" class="avatar">
+				<img src="avatars/avatar2.png">
+			</div>
+			<div id="avatar3" class="avatar">
+				<img src="avatars/avatar3.png">
+			</div>
+		</div>
 	</div>
 	<script src="src/database.js"></script>
 	<script src="src/round2.js"></script>

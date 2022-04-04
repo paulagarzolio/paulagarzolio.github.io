@@ -1,0 +1,32 @@
+var Dialogue = {
+    messages:[],
+    actualMessage:-1,
+    div:"",
+
+    init: function(messages){
+        this.div =query("#SecondScene");
+        this.actualMessage=0;
+        this.messages=messages;
+        this.setMessages(this.messages[0]);
+        
+    },
+    setMessages: function(){
+        var content = this.messages[this.actualMessage]
+        var message = new Message(this.actualMessage,content);
+        message.div=query(".message").cloneNode();
+        message.div.innerHTML = message.content;
+        this.div.appendChild(message.div);
+        setTimeout(message.eraseMessage,80000);
+        setTimeout(setMessages,2000);
+    },
+    eraseMessage: function(){
+        this.div.style.color="#1c1c1e56";
+    },
+
+}
+
+function message(id,content){
+	this.id=id;
+	this.content=content;
+    this.div="";
+}

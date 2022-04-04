@@ -34,8 +34,8 @@ var Game={
 	},
 	initGame: function(){
 		this.db = new database();
-		this.livesDOM=query("#SecondScene #lifes");
-		this.domElement=query("#SecondScene .Questions");
+		this.livesDOM=query("#Round1 #lifes");
+		this.domElement=query("#Round1 .Questions");
 		this.initLives();
 		this.db.createLevels(["eagle","owl","peacock","swan","duck","pigeon","chicken","chick"]);
 		this.initQuestions();
@@ -65,7 +65,7 @@ function showNextQuestion(){
 	}
 	else {
 		console.log("Juego TERMINADO");
-		initThirdScene();
+		initSecondGame();
 	}
 
 }
