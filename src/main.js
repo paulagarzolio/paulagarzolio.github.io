@@ -42,8 +42,9 @@ function initSecondScene(){
 	query("#FirstScene").style.display="none";
 	var sceneDiv= query("#SecondScene");
 	sceneDiv.style.display="";
-	var messages = "Bienvenido/a;Hola!;Que hago yo aquí?;$No te preocupes, pronto vas a entenderlo todo. Antes de nada, elige a tu personaje para empezar.$Verás, desde hace unos años las redes sociales se han convertido en un lugar cada vez más solitario y cruel con unos estandares de belleza con los que muchos usarios no se sienten identificados. La imagen corporal de muchos de ellos, ha quedado afectada por estos estandares y los usuarios se sienten cada vez más inseguros con sus cuerpos.;\
-	Qué es la Imagen Corporal?;Entiendo...;$La imagen corporal es la idea que cada uno tiene de su propia aspecto físico y de cómo le ven los demás.";
+	var messages = "Bienvenido/Bienvenida;Hola!;Que hago yo aquí?;$No te preocupes, pronto vas a entenderlo todo. Antes de nada, elige a tu personaje para empezar.$Verás, desde hace unos años las redes sociales se han convertido en un lugar cada vez más solitario y cruel con unos estandares de belleza con los que muchos usarios no se sienten identificados. La imagen corporal de muchos de ellos, ha quedado afectada por estos estandares y los usuarios se sienten cada vez más inseguros con sus cuerpos.;\
+	Qué es la Imagen Corporal?;Entiendo...;$La imagen corporal es la idea que cada uno tiene de su propia aspecto físico y de cómo le ven los demás.$Esta sociedad te necesita para solucionar el problema.;Porque a mi?;¿Cómo?$A lo largo de este minijuego, encontrarás retos para poder encontrar la clave y evitar que este problema empeore. La humanidad te necesita!;Adelante!;No se si estoy preparado/a...;\
+	$No te preocupes, siguiendo mis indicaciones serás capaz de conseguirlo.";
 	Dialogue.init(messages);
 	
 }
@@ -73,7 +74,7 @@ function initSecondGame(){
 	body=query("body");
 	body.style.background="url(fondoQuestion.jpg)";
 	texts=["felt unhappy because of my number of likes in a photo", "unfollowed a public figure because I was envious of his life",
-	"used photo retouching editors to modify something you don't like about your body","bought the samee clothes as an influencer to feel prettier"+
+	"used photo retouching editors to modify something you don't like about your body","bought the same clothes as an influencer to feel prettier"+
 	"used a face filter because I thought I would appear niicer on a photo"]
 	urls=["img/never1.png","img/never2.png","img/never3.png","img/never4.png","img/never5.png"];
 	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)"];
@@ -120,11 +121,15 @@ var Dialogue = {
 			var quest =query(".Info").cloneNode();
 			div.appendChild(quest);
 			message.div=div;
-			setTimeout(this.showAvatars,100);
+			if(that.actualMessage==1){
+				setTimeout(this.showAvatars,100);
+			}
+			else setTimeout(Dialogue.nextMessage,2000);
 		}
 		message.div.id = id
 		message.div.children[0].innerHTML=message.question;
 		that.div.appendChild(message.div);
+		speakDescription(message.div.children[0].innerHTML); 
 		unfade(that.div);
 		that.div.scrollTop=10000;
 		message.div.style.opacity="1";
@@ -149,9 +154,16 @@ var Dialogue = {
 		this.style.backgroundColor="rgb(0, 74, 173)";
 		this.actualMessage=2;
 		setTimeout(Dialogue.nextMessage,500);
+
+		//remove eventListeners
+		var avatars=query("#avatars");
+		avatars.children[0].removeEventListener("click",Dialogue.chooseAvatar);
+		avatars.children[1].removeEventListener("click",Dialogue.chooseAvatar);
+		avatars.children[2].removeEventListener("click",Dialogue.chooseAvatar);
 		
-		//initFirstGame();
+		
 	},
+
 	showAvatars: function(){
 		var avatars=query("#avatars");
 		query("#story").children[1].appendChild(avatars);
@@ -163,6 +175,9 @@ var Dialogue = {
 	},
 	nextMessage: function(){
 		var that= Dialogue;
+		if(that.actualMessage==that.messages.length){
+			initFirstGame();
+		}
 		var prev= that.actualMessage-1;
 		if(that.actualMessage-1>=0){
 			var prev_message=query("#story").children[prev];
@@ -200,5 +215,26 @@ function Message(id,question,answers=[]){
     this.div="";
 }
 
+function speakDescription(text)
+{
+    //get voices list
+    var voices = speechSynthesis.getVoices();
+    // var text = "Bienvenido al museo del mundo"; 
+    //create sentence
+    var utterThis = new SpeechSynthesisUtterance( text );
+    // utterThis.lang = ''
+    //assign voice, be careful as voices have a language associated
+    var i =0; 
+    if(voices[i].lang){
+        while(voices[i].lang!='es-ES')
+        {
+            i++; 
+        }
+        utterThis.voice = voices[i];
 
+        //speak
+        speechSynthesis.speak( utterThis );
+    }
+
+}
 
