@@ -19,6 +19,24 @@ var Game={
 			this.livesDOM.appendChild(live);
 		}	
 	},
+	showCorrect: function(){
+		var div=query("#Result");
+		div.style.display="";
+		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
+		div.style.color= "rgb(0, 157, 33)";
+		div.children[0].innerHTML ="Correct. Well done!";
+		div.children[1].src="correct.gif";
+		div.children[1].style.width="750px"
+	},
+	showIncorrect: function(){
+		var div=query("#Result");
+		div.style.display="";
+		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
+		div.style.color= "rgb(238, 38, 38)";
+		div.children[0].innerHTML ="Incorrect :( Next time will be better!";
+		div.children[1].src="incorrect.gif";
+		div.children[1].style.width="550px"
+	},
 	incorrectAnswer: function(){
 		this.lives--;
 		var liveDOM = this.livesDOM.children[this.lives];
@@ -57,6 +75,8 @@ var Game={
 
 }
 function showNextQuestion(){
+	var div=query("#Result");
+		div.style.display="none";
 	if (Game.actualQuestion<Game.lastQuestion){
 		var DOM = Game.db.questionDom;
 		Game.actualQuestion=Game.actualQuestion+1;
@@ -69,17 +89,30 @@ function showNextQuestion(){
 	}
 
 }
+function showLevelUp(){
+	var div=query("#NextQuestion");
+	div.style.display="";
+	var levels = query("#levels").cloneNode(true);
+	div.appendChild(levels);
+	div.children[0].innerHTML="QUESTION "+Game.actualQuestion;
+	div.children[1].innerHTML="CATEGORIA";
+}
 function onClickAnswer(){
 	var img = this.children[0];
 	if(Game.db.questions[Game.actualQuestion].isCorrect(this.id)){
 		img.src="correct.png";
 		Game.correctAnswer();
+		Game.showCorrect();
+		setTimeout(showLevelUp,3000);
 	}
 	else {
 		img.src="incorrect.png";
 		Game.incorrectAnswer();
+		Game.showIncorrect();
+		setTimeout(showLevelUp,3000);
+		
 	}
-	setTimeout(showNextQuestion,1000);
+	//setTimeout(showNextQuestion,3000);
 	
 	
 

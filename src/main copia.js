@@ -6,11 +6,7 @@ document.addEventListener('DOMContentLoaded',function(){
 var init = {
 	initGame: function(){
 		console.log("Juego iniciado")
-		//initFirstScene();
-		query("#cargando").style.display="none";
-		query("#FirstScene").style.display="none";
-		query("#Round2").style.display="none";
-		initFirstGame();
+		initFirstScene();
 	}
 }
 
@@ -137,18 +133,25 @@ var Dialogue = {
     actualMessage:-1,
     div:"",
 
-    init: function(messages){
+    init: function(txt){
         this.div =query("#story");
-
-		for(var i=0; i< messages.dialogues.length;i++){
-			var dialogue =messages.dialogues[i];
-			if(dialogue.intro.length>1){
-				var message =new Message(i,dialogue.intro,dialogue.answers);
+		var messages =txt.split(["$"]);
+		for(var i=0; i<messages.length;i++){
+			var strings = messages[i].split([";"]);
+			if(strings.length==4){
+				var questions=[];
+				questions.push(strings[0]);
+				questions.push(strings[1]);
+				var answers = strings.splice(2,3);
+				if(!answers[0])answers="";
+				var message =new Message(i,questions,answers);
 				this.messages.push(message);
 			}
 			else{
-				var message =new Message(i,dialogue.intro,dialogue.answers);
-				message.actualQuestion=dialogue.intro;
+				var question =strings[0];
+				var answers = strings.splice(1,2);
+				var message =new Message(i,question,answers);
+				message.actualQuestion=question;
 				this.messages.push(message);
 			}
 			
@@ -233,15 +236,15 @@ var Dialogue = {
 	},
 	nextMessage: function(){
 		var that= Dialogue;
-		if(that.actualMessage==that.messages.length){
-			initFirstGame();
-			return
-		}
 		var actMessage=that.messages[that.actualMessage];
 		var actualQ = actMessage.actualQuestion;
 		if(!actualQ){
 			var id = this.id;
 			actMessage.actualQuestion=actMessage.questions[id];
+		}
+		if(that.actualMessage==that.messages.length){
+			initFirstGame();
+			return
 		}
 		var prev= that.actualMessage-1;
 		if(that.actualMessage-1>=0){
