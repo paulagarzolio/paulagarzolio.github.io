@@ -14,10 +14,18 @@
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+	<div id="popUpLanguage" style="display:none;width:100%;height:100%;background-color: rgb(255, 189, 89);">
+		<div id="closeButton"onclick="popOffLanguage()">x</div>
+		<div style="margin:40px;color: beige; font-family:'Anonymous Pro', monospace;text-align:center;font-size:30px;font-weight: bolder;">Language</div>
+		<div class="language" onclick="chooseLanguage(this)" >ENGLISH</div>
+		<div class="language" onclick="chooseLanguage(this)">ESPAÑOL</div>
+		<div class="language" onclick="chooseLanguage(this)">CATALÀ</div>
+
+	</div>
 	<div id="FirstScene" >
-		<img src="language.png" class="Button" style="width: 80px;margin: 0px;margin-left: 85%;margin-top: 15px;">
+		<img src="language.png" class="Button" onclick="popUpLanguage()" id="button2" style="width: 80px;margin: 0px;margin-left: 85%;margin-top: 15px;">
 		<img src="GIF.gif" class="portada">
-		<img src="jugar.png" class="Button" id="button1"style="width:180px;transform: translateY(610%);margin-left: 42%;">
+		<img src="jugar.png" class="Button" id="button1" style="width:180px;transform: translateY(610%);margin-left: 42%;">
 	</div>
 	<div id ="SecondScene" style="display:none;">
 		<div class="horizontalbar" style="height:80px;display:block;background-color: black;top:0%"></div>
@@ -43,8 +51,9 @@
 			<img >
 		</div>
 		<div id="NextQuestion" style="display:none;">
-			<div class="text" style="margin-top:280px;font-family: 'Caveat', cursive;font-size: 70px;"></div>
-			<div class="text" style="font-style: 'Open Sans', sans-serif;font-size: 40px;"></div>
+			<div class="text" style="margin-top:280px;font-family: 'Caveat', cursive;font-size: 80px;"></div>
+			<div class="text" style="font-style: 'Open Sans', sans-serif;font-size: 50px;transform: translateY(-40%);"></div>
+			<img id="levelJ">
 		</div>
 	</div>
 	<div id="Round2">

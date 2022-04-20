@@ -3,11 +3,38 @@ var Game={
 	livesDOM: 0,
 	round: 0,
 	level:0,
+	language:"",
 	db: [],
 	domElement: 0,
 	actualQuestion:0,
 	file: "src/questions.txt",
-	txt :"Cúal es la red social que daña mas la opinion que  los usuarios  tienen de su cuerpo?;Instagram;Facebook;Twitter;Snapchat;0$Cuanto años tengo?;1;2;3;4;0$Cuantas imágenes nuevas se suben cada hora a Instagram?;200 millones;10000; 10 millones; 500 mil;2",
+	test: {
+		ESPAÑOL: [
+			{
+				question: "Cúal es la red social que daña mas la opinion que  los usuarios  tienen de su cuerpo?",
+				answers: ["Instagram","Facebook","Twitter","Snapchat"],
+				correct:0
+			},
+			{
+				question: "Cuántas imágenes nuevas se suben cada hora a Instagram?",
+				answers: ["200 millones","10 mil","10 millones","500 mil"],
+				correct:2
+			}
+		],
+		ENGLISH: [
+			{
+				question: "Which social media endangers most the opinion that the users have from their own body?",
+				answers: ["Instagram","Facebook","Twitter","Snapchat"],
+				correct:0
+			},
+			{
+				question: "How many images are uploaded every hour in Instagram?",
+				answers: ["200 milion","10 thousand","10 milion","500 thousand"],
+				correct:2
+			}
+		]
+
+	},
 	lastQuestion:0,
 
 	initLives: function(){
@@ -63,20 +90,21 @@ var Game={
 	},
 
 	initQuestions: function(){
-		var questions =this.txt.split(["$"]);
+		var questions =this.test[this.language];
 		this.lastQuestion=questions.length-1;
 		for(var i=0; i<questions.length;i++){
-			var strings = questions[i].split([";"]);
-			var question = strings[0];
-			var answers = strings.splice(1,4);
-			this.db.addQuestion(question,answers,strings[1]);
+			var quest = questions[i];
+			var question = quest.question;
+			var answers = quest.answers;
+			this.db.addQuestion(question,answers,quest.correct);
 		} 
 	},
 
 }
 function showNextQuestion(){
 	var div=query("#Result");
-		div.style.display="none";
+	query("#NextQuestion").style.display="none";;
+	div.style.display="none";
 	if (Game.actualQuestion<Game.lastQuestion){
 		var DOM = Game.db.questionDom;
 		Game.actualQuestion=Game.actualQuestion+1;
@@ -94,8 +122,11 @@ function showLevelUp(){
 	div.style.display="";
 	var levels = query("#levels").cloneNode(true);
 	div.appendChild(levels);
-	div.children[0].innerHTML="QUESTION "+Game.actualQuestion;
-	div.children[1].innerHTML="CATEGORIA";
+	div.children[0].innerHTML="QUESTION "+String(Game.actualQuestion+1);
+	div.children[1].innerHTML="Nivel";
+	var level = Game.db.levels[7-Game.level];
+	div.children[2].src="src/levels/"+level.name +".png";
+	setTimeout(showNextQuestion,3000);
 }
 function onClickAnswer(){
 	var img = this.children[0];

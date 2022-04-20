@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded',function(){
 var init = {
 	initGame: function(){
 		console.log("Juego iniciado")
-		//initFirstScene();
-		query("#cargando").style.display="none";
-		query("#FirstScene").style.display="none";
-		query("#Round2").style.display="none";
-		initFirstGame();
+		initFirstScene();
+		// query("#cargando").style.display="none";
+		// query("#FirstScene").style.display="none";
+		// query("#Round2").style.display="none";
+		// initFirstGame();
 	}
 }
 
@@ -35,6 +35,19 @@ function initFirstScene(){
 
 document.getElementById("button1").addEventListener("click",cargando);
 
+function popUpLanguage(){
+	query("#popUpLanguage").style.display="";
+	query("#FirstScene").style.display="none";
+}
+function popOffLanguage(){
+	query("#popUpLanguage").style.display="none";
+	query("#FirstScene").style.display="";
+}
+
+function chooseLanguage(that){
+	Game.language = that.innerHTML;
+	
+}
 function cargando(){
 	query("#FirstScene").style.display="none";
 	body=query("body");
