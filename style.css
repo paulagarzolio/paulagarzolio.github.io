@@ -414,7 +414,8 @@ color: green;
 	color: rgb(226, 225, 225);
 
 }
-.Response:hover{
+.Response:hover,
+ #Presentation img:hover{
 	cursor:pointer;
 }
 #avatars{

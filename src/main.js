@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded',function(){
 var init = {
 	initGame: function(){
 		console.log("Juego iniciado")
-		initFirstScene();
-		// query("#cargando").style.display="none";
-		// query("#FirstScene").style.display="none";
-		// query("#Round2").style.display="none";
-		// initFirstGame();
+		//initFirstScene();
+		query("#cargando").style.display="none";
+		query("#FirstScene").style.display="none";
+		query("#Round2").style.display="none";
+		initFirstGame();
 	}
 }
 
@@ -46,7 +46,7 @@ function popOffLanguage(){
 
 function chooseLanguage(that){
 	Game.language = that.innerHTML;
-	
+
 }
 function cargando(){
 	query("#FirstScene").style.display="none";
@@ -75,8 +75,8 @@ function initSecondScene(){
 	//var messages = "Hola, te estábamos esperando!;A mi?;Que hago yo aquí?$Si, a ti. Pronto vas a entender el motivo. Antes de nada, elige a tu personaje para empezar.;No te preocupes, pronto vas a entenderlo todo. Antes de nada, elige a tu personaje para empezar.;;$Verás, desde hace unos años las redes sociales se han convertido en un lugar cada vez más solitario y cruel con unos estandares de belleza con los que muchos usarios no se sienten identificados. La imagen corporal de muchos de ellos, ha quedado afectada por estos estandares y los usuarios se sienten cada vez más inseguros con sus cuerpos.;\
 	//Qué es la Imagen Corporal?;Entiendo...$La imagen corporal es la idea que cada uno tiene de su propia aspecto físico y de cómo le ven los demás.;;;$Esta sociedad te necesita para solucionar el problema.;Porque a mi?;¿Cómo?$A lo largo de este minijuego, encontrarás retos para poder encontrar la clave y evitar que este problema empeore. La humanidad te necesita!;Adelante!;No se si estoy preparado/a...\
 	//$No te preocupes, siguiendo mis indicaciones serás capaz de conseguirlo.";
-	var messages = {
-		dialogues: [
+	var dialogues = {
+		ESPAÑOL: [
 			{
 				intro: ["Hola, te estábamos esperando!"],
 				answers: ["A mi?","Que hago yo aquí?"]
@@ -108,7 +108,7 @@ function initSecondScene(){
 		]
 			
 	}
-	Dialogue.init(messages);
+	Dialogue.init(dialogues);
 	
 }
 function initFirstGame(){
@@ -118,13 +118,8 @@ function initFirstGame(){
 	secondScene=query("#Round1");
 	secondScene.style.display="grid";
 	query(".avatar_").src=avatar;
-	body=query("body");
-	body.style.background="url(fondoMistico2.jpg)";
-	body.style.backgroundSize="100%";
-	body.style.backgroundRepeat="no-repeat";
-	body.style.backgroundPosition="center 0px";
 	// initQuestions();
-	Game.initGame();
+	Game.showPresentation();
 	
 }
 function initSecondGame(){
@@ -150,11 +145,11 @@ var Dialogue = {
     actualMessage:-1,
     div:"",
 
-    init: function(messages){
+    init: function(dialogues){
         this.div =query("#story");
 
-		for(var i=0; i< messages.dialogues.length;i++){
-			var dialogue =messages.dialogues[i];
+		for(var i=0; i< dialogues[Game.language].length;i++){
+			var dialogue =dialogues[Game.language][i];
 			if(dialogue.intro.length>1){
 				var message =new Message(i,dialogue.intro,dialogue.answers);
 				this.messages.push(message);

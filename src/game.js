@@ -3,7 +3,7 @@ var Game={
 	livesDOM: 0,
 	round: 0,
 	level:0,
-	language:"",
+	language:"ESPAÑOL",
 	db: [],
 	domElement: 0,
 	actualQuestion:0,
@@ -77,7 +77,28 @@ var Game={
 		this.db.goToLevel(this.level);
 
 	},
+	showPresentation: function(){
+		var div=query("#Presentation");
+		query("#Round1").style.display="none";
+		div.style.display="";
+		div.style.backgroundImage="url('presentation_game.png')"
+		var body = query("body");
+		body.style.background="#D7BCFD";
+		div.style.backgroundSize="950px";
+		div.style.backgroundPosition="center 30px";
+	
+	},
+	showNext:function(){
+		query("#Presentation").style.display="none";
+		query("#Round1").style.display="grid";
+		Game.initGame();
+	},
 	initGame: function(){
+		body=query("body");
+		body.style.background="url(fondoMistico2.jpg)";
+		body.style.backgroundSize="100%";
+		body.style.backgroundRepeat="no-repeat";
+		body.style.backgroundPosition="center 0px";
 		this.db = new database();
 		this.livesDOM=query("#Round1 #lifes");
 		this.domElement=query("#Round1 .Questions");
@@ -87,6 +108,7 @@ var Game={
 		this.db.initClassification();
 		this.db.goToLevel(0);
 		this.domElement.appendChild(this.db.initQuestionElement());
+
 	},
 
 	initQuestions: function(){
