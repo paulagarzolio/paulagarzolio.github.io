@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded',function(){
 var init = {
 	initGame: function(){
 		console.log("Juego iniciado")
-		//initFirstScene();
+		// initFirstScene();
 		query("#cargando").style.display="none";
 		query("#FirstScene").style.display="none";
 		query("#Round2").style.display="none";
@@ -119,10 +119,11 @@ function initFirstGame(){
 	secondScene.style.display="grid";
 	query(".avatar_").src=avatar;
 	// initQuestions();
-	Game.showPresentation();
+	Game.showPresentation("round1.png");
 	
 }
 function initSecondGame(){
+	query("#Presentation").style.display="none";
 	firstScene=query("#FirstScene");
 	firstScene.style.display="none";
 	secondScene = query("#Round1");

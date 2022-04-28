@@ -379,6 +379,7 @@ color: green;
 	overflow-y:scroll;
 	max-height: 400px;
 	padding-top: 200px;
+	
 }
 .info{
 	text-align: center;
@@ -417,6 +418,30 @@ color: green;
 .Response:hover,
  #Presentation img:hover{
 	cursor:pointer;
+}
+#Classification{
+	background-color: #BAD4FF;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+#levelRound1{
+	font-size: 30px;
+	z-index: 3;
+	position: absolute;
+	top: 90%;
+	transform: translateY(-90%);
+	text-align:center;
+	left: 40%;
+
+}
+#leftPicture{
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-left:50px;
 }
 #avatars{
 	display: grid;
