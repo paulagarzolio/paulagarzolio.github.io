@@ -30,7 +30,7 @@ class database{
 	goToLevel(level_id){
 		var total_levels = this.levels.length-1
 		var level = this.levels[total_levels-level_id]
-		level.domElement.children[1].style.backgroundColor="green";
+		level.domElement.style.backgroundColor="#1ABFB5";
 
 	}
 	initialState(last_level){
@@ -44,7 +44,7 @@ class database{
 		var classification = query("#classification");	
 		for(var i=0; i<this.levels.length;i++){
 			var row= (i+1).toString()+"/"+(i+2).toString();
-			var levelHTML=this.levels[i].createDom(row);
+			var levelHTML=Game.db.levels[i].createDom(row);
 			classification.appendChild(levelHTML);
 		}
 	}

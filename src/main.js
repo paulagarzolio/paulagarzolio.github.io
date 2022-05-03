@@ -119,9 +119,12 @@ function initFirstGame(){
 	secondScene.style.display="grid";
 	query(".avatar_").src=avatar;
 	// initQuestions();
+	Game.round=1;
 	Game.showPresentation("round1.png");
+
 	
 }
+
 function initSecondGame(){
 	query("#Presentation").style.display="none";
 	firstScene=query("#FirstScene");

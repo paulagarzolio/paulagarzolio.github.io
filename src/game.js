@@ -56,7 +56,7 @@ var Game={
 		div.style.display="";
 		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
 		div.style.color= "rgb(0, 157, 33)";
-		div.children[0].innerHTML ="Correct. Well done!";
+		div.children[0].innerHTML ="Correcto. Muy bieen!";
 		div.children[1].src="correct.gif";
 		div.children[1].style.width="750px"
 	},
@@ -65,7 +65,7 @@ var Game={
 		div.style.display="";
 		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
 		div.style.color= "rgb(238, 38, 38)";
-		div.children[0].innerHTML ="Incorrect :( Next time will be better!";
+		div.children[0].innerHTML ="Incorrecto... A la siguiente va la vencida";
 		div.children[1].src="incorrect.gif";
 		div.children[1].style.width="550px"
 	},
@@ -91,25 +91,55 @@ var Game={
 		body.style.background="#D7BCFD";
 		div.style.backgroundSize="850px";
 		div.style.backgroundPosition="center 20px";
+		if(Game.round==1)setTimeout(Game.showPresentation2,4000);
+
 		
+	},
+	showPresentation2: function(){
+		var div=query("#Presentation");
+		div.style.backgroundImage="none";
+		var title = document.createElement("div");
+		title.className="title";
+		title.innerHTML="QUIÉN QUIERE SER INFLUENCER?";
 	
+		Game.initGame();
+		var classification=query("#levels").cloneNode(true);
+		div.style.display= "grid";
+		div.style.gridTemplateColumns= "1fr 1fr";
+		classification.children[0].id="classification2";
+		classification.style.gridColumn="2/3";
+		classification.style.width="70%";
+		classification.style.margin="auto";
+		classification.style.marginTop="80px";
+		div.appendChild(title);
+		div.appendChild(classification);
+		var message = document.createElement("div");
+		message.innerHTML = "En esta prueba, deberás enfrentarte a una serie de preguntas en las que solo una respuesta es correcta. \
+			        Tras cada pregunta irás subiendo de nivel, pero si te equivocas tendrás que volver a empezar y perderás todos los likes ganados. \
+					Tendrás tan solo 3 vidas para poder demostrar cuanto sabes de redes sociales, Imagen Corporal, influencers... Aprovéchalas!";
+		message.className="Info";
+		message.style.gridColumn="1/2";
+		div.appendChild(message);
+		speakDescription(message.innerHTML);
+		setTimeout(function(){showLevelUp(1)},20000);
 	},
 	showNext:function(){
 		query("#Presentation").style.display="none";
 		query("#Round1").style.display="grid";
-		Game.initGame();
-	},
-	initGame: function(){
 		body=query("body");
 		body.style.background="url(fondoMistico2.jpg)";
 		body.style.backgroundSize="100%";
 		body.style.backgroundRepeat="no-repeat";
 		body.style.backgroundPosition="center 0px";
+		
+	},
+	initGame: function(){
+		
 		this.db = new database();
 		this.livesDOM=query("#Round1 #lifes");
 		this.domElement=query("#Round1 .Questions");
 		this.initLives();
-		this.db.createLevels(["eagle","owl","peacock","swan","duck","pigeon","chicken","chick"]);
+		this.db.createLevels(["1.000.000","500.000","100.000","50.000","10.000","1.000","500","50"]);
 		this.initQuestions();
 		this.db.initClassification();
 		this.db.goToLevel(0);
@@ -137,8 +167,6 @@ function showNextQuestion(){
 	Game.actualQuestion=Game.actualQuestion+1;
 	var question = Game.db.questions[Game.actualQuestion];
 	question.assignDom(DOM);
-
-
 }
 function showLevelUp(option){
 	if(Game.actualQuestion<Game.lastQuestion && !option) {
@@ -146,10 +174,10 @@ function showLevelUp(option){
 		div.style.display="";
 		var levels = query("#levels").cloneNode(true);
 		div.appendChild(levels);
-		div.children[0].innerHTML="QUESTION "+String(Game.actualQuestion+2);
-		div.children[1].innerHTML="Nivel";
+		div.children[0].innerHTML="QUESTION "+String(Game.actualQuestion);
 		var level = Game.db.levels[7-Game.level];
-		div.children[2].src="src/levels/"+level.name +".png";
+		div.children[1].innerHTML="Por los "+level.name;
+
 
 		setTimeout(showNextQuestion,3000);
 	}
@@ -159,17 +187,18 @@ function showLevelUp(option){
 		div.style.display="";
 		var levels = query("#levels").cloneNode(true);
 		div.appendChild(levels);
-		div.children[0].innerHTML="QUESTION "+String(Game.actualQuestion+1);
-		div.children[1].innerHTML="Nivel";
+		div.children[0].innerHTML="QUESTION "+String(Game.actualQuestion);
 		var level = Game.db.levels[7-Game.level];
-		div.children[2].src="src/levels/"+level.name +".png";
+		div.children[1].innerHTML="Por los "+level.name+" likes!";
+
 		setTimeout(function(){
 			query("#NextQuestion").style.display="none";
 		},3000);
 	}
 	else{
 		console.log("Juego TERMINADO");
-		query("#Presentation img").remove();
+		Game.round=2;
+		//query("#Presentation img").remove();
 		//Game.showPresentation("round2.png");
 		
 		setTimeout(showResults,4000);
@@ -210,7 +239,7 @@ function showResults(){
 	var dialogues = {
 		ESPAÑOL: [
 			{
-				intro: ["Felicidades, has llegado hasta el nivel."],
+				intro: ["Felicidades, has llegado hasta los "+Game.actualQuestion+" me gusta."],
 				answers: ""
 				
 			},
@@ -226,8 +255,28 @@ function showResults(){
 		var that= Dialogue;
 		if(that.actualMessage==that.messages.length){
 			Game.showPresentation();
+
 			query("#Presentation").style.backgroundImage="url('round2.png')";
-			setTimeout(initSecondGame,4000);
+			query("#Presentation").children[0].remove();
+			query("#Presentation").children[0].remove();
+			query("#Presentation").children[0].remove();
+			setTimeout(function(){
+				var divPres = query("#Presentation");
+				divPres.style.backgroundImage="none";
+				var title = document.createElement("div");
+				divPres.appendChild(title);
+				title.innerHTML = "Yo Nunca Nunca";
+				title.className="title";
+				var text =document.createElement("div");
+				text.innerHTML="En este reto deberás jugar al juego Yo Nunca Nunca. \nIrán apareciendo una serie de cartas con cosas que pueden o no habeertee pasado en redes sociales. Deberás arrastrar la carta a la derecha si las has hecho o hacia la izquierda si no.";
+				text.className ="Info";
+				text.style.top="50%";
+				text.style.transform="translateY(50%)";	
+				divPres.appendChild(text);
+				speakDescription(text.innerHTML);
+				setTimeout(initSecondGame,14000);
+
+			},4000);
 			return
 		}
 		var actMessage=that.messages[that.actualMessage];
