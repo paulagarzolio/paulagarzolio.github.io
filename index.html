@@ -14,96 +14,100 @@
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div id="popUpLanguage" style="display:none;width:100%;height:100%;background-color: rgb(255, 189, 89);">
-		<div id="closeButton"onclick="popOffLanguage()">x</div>
-		<div style="margin:40px;color: beige; font-family:'Anonymous Pro', monospace;text-align:center;font-size:30px;font-weight: bolder;">Language</div>
-		<div class="language" onclick="chooseLanguage(this)" >ENGLISH</div>
-		<div class="language" onclick="chooseLanguage(this)">ESPAÑOL</div>
-		<div class="language" onclick="chooseLanguage(this)">CATALÀ</div>
 
-	</div>
-	<div id="FirstScene" >
-		<img src="language.png" class="Button" onclick="popUpLanguage()" id="button2" style="width: 80px;margin: 0px;margin-left: 85%;margin-top: 15px;">
-		<img src="GIF.gif" class="portada">
-		<img src="jugar.png" class="Button" id="button1" style="width:180px;transform: translateY(610%);margin-left: 42%;">
-	</div>
-	<div id ="SecondScene" style="display:none;">
-		<div class="horizontalbar" style="height:80px;display:block;background-color: black;top:0%"></div>
-		<div id="story">
-
+		<div id="popUpLanguage" style="display:none;width:100%;height:100%;background-color: rgb(255, 189, 89);">
+			<div id="closeButton"onclick="popOffLanguage()">x</div>
+			<div style="margin:40px;color: beige; font-family:'Anonymous Pro', monospace;text-align:center;font-size:30px;font-weight: bolder;">Language</div>
+			<div class="language" onclick="chooseLanguage(this)" >ENGLISH</div>
+			<div class="language" onclick="chooseLanguage(this)">ESPAÑOL</div>
+			<div class="language" onclick="chooseLanguage(this)">CATALÀ</div>
+	
 		</div>
-	</div>
-	<div id="cargando">
-		<img src="cargando.gif">
-	</div>
-	<div id="Presentation" style="display:none;text-align:center;height:100%;width:100%;background-repeat: no-repeat;">
-	</div>
-	<div id="Round1">
-		
-		<div id="lifes"></div>
-		<img src="avatar.png" class="avatar_">
-		<img src="circulo.png" class="circulo">
-		<div class="Questions">
+		<div id="FirstScene" >
+			<img src="language.png" class="Button" onclick="popUpLanguage()" id="button2" style="width: 80px;margin: 0px;margin-left: 85%;margin-top: 15px;">
+			<img src="GIF.gif" class="portada">
+			<img src="jugar.png" class="Button" id="button1" style="width:180px;transform: translateY(610%);margin-left: 42%;">
 		</div>
-		<div id="levels">
-			<div id="classification"> 
+		<div id ="SecondScene" style="display:none;">
+			<div class="horizontalbar" style="height:80px;display:block;background-color: black;top:0%"></div>
+			<div id="story">
+	
 			</div>
 		</div>
-		<div id="Result" style="display:none">
-			<div style="margin-bottom:30px"></div>
-			<img >
+		<div id="cargando">
+			<img src="cargando.gif">
 		</div>
-		<div id="NextQuestion" style="display:none;">
-			<div class="text" style="margin-top:280px;font-family: 'Caveat', cursive;font-size: 80px;"></div>
-			<div class="text" style="font-style: 'Open Sans', sans-serif;font-size: 50px;transform: translateY(-40%);"></div>
-			<img id="levelJ">
+		<div id="Presentation" style="display:none;text-align:center;height:100%;width:100%;background-repeat: no-repeat;">
 		</div>
-	</div>
-	<div id="Round2">
-		<div class="result" id="accept"> 
-			<p>I have </p>
-			<img src="accept.png" style="width:30%">
+		<div id="Round1">
+			
+			<div id="lifes"></div>
+			<img src="avatar.png" class="avatar_">
+			<img src="circulo.png" class="circulo">
+			<div class="Questions">
+			</div>
+			<div id="levels">
+				<div id="classification"> 
+				</div>
+			</div>
+			<div id="Result" style="display:none">
+				<div style="margin-bottom:30px"></div>
+				<img >
+			</div>
+			<div id="NextQuestion" style="display:none;">
+				<div class="text" style="margin-top:280px;font-family: 'Caveat', cursive;font-size: 80px;"></div>
+				<div class="text" style="font-style: 'Open Sans', sans-serif;font-size: 50px;transform: translateY(-40%);"></div>
+				<img id="levelJ">
+			</div>
 		</div>
-		<div class="result" id="reject">
-			<p>I haven't </p>
-			<img src="reject.png" style="width:30%">
-		</div>
-		<ol class="cards-list">
-		</ol>
-		
-	</div>
-	
-	<div class="templates">
-		<button class="qu-ans">
-			<img src="">
-			<p> </p>
-		</button>
-		<div class="info">
-			<div class="Info"></div>
-			<div class="Response"></div>
-			<div class="Response"></div>
-		</div>
-		<div class="level">
-			<div class="levelType"></div>
-			<img src="">
+		<div id="Round2">
+			<div class="title" style="position:absolute">Yo Nunca Nunca</div>
+			<div>Arrastrar la carta hacia la derecha o la izquierda</div>
+			<div class="result" id="accept"> 
+				<p>I have </p>
+				<img src="accept.png" style="width:30%">
+			</div>
+			<div class="result" id="reject">
+				<p>I haven't </p>
+				<img src="reject.png" style="width:30%">
+			</div>
+			<ol class="cards-list">
+			</ol>
 			
 		</div>
-		<li class="card">
-			<img style="pointer-events: none;">
-			<p class="message"></p>
-		</li>
-		<div id="avatars" style="display:none">
-			<div id="avatar1" class="avatar" >
-				<img src="avatars/avatar1.png">
+		
+		<div class="templates">
+			<button class="qu-ans">
+				<img src="">
+				<p> </p>
+			</button>
+			<div class="info">
+				<div class="Info"></div>
+				<div class="Response"></div>
+				<div class="Response"></div>
 			</div>
-			<div id="avatar2" class="avatar">
-				<img src="avatars/avatar2.png">
+			<div class="level">
+				<div class="levelType"></div>
+				<img src="">
+				
 			</div>
-			<div id="avatar3" class="avatar">
-				<img src="avatars/avatar3.png">
+			<li class="card">
+				<img style="pointer-events: none;">
+				<p class="message"></p>
+			</li>
+			<div id="avatars" style="display:none">
+				<div id="avatar1" class="avatar" >
+					<img src="avatars/avatar1.png">
+				</div>
+				<div id="avatar2" class="avatar">
+					<img src="avatars/avatar2.png">
+				</div>
+				<div id="avatar3" class="avatar">
+					<img src="avatars/avatar3.png">
+				</div>
 			</div>
 		</div>
-	</div>
+	
 	<script src="src/database.js"></script>
 	<script src="src/round2.js"></script>
 	<script src="src/question.js"></script>

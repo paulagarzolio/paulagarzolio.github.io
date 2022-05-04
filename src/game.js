@@ -110,7 +110,7 @@ var Game={
 		classification.style.gridColumn="2/3";
 		classification.style.width="70%";
 		classification.style.margin="auto";
-		classification.style.marginTop="80px";
+		classification.style.marginTop="170px";
 		div.appendChild(title);
 		div.appendChild(classification);
 		var message = document.createElement("div");
@@ -128,7 +128,6 @@ var Game={
 		query("#Round1").style.display="grid";
 		body=query("body");
 		body.style.background="url(fondoMistico2.jpg)";
-		body.style.backgroundSize="100%";
 		body.style.backgroundRepeat="no-repeat";
 		body.style.backgroundPosition="center 0px";
 		
