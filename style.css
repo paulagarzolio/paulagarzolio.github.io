@@ -214,7 +214,7 @@ html, body{
 	height: 400px;
 	padding:5px;
 }
-#Round1 #classification,#classification2{
+#Round1 #classification{
 	display:grid;
 	width:100%;
 	height:100%;
@@ -224,6 +224,18 @@ html, body{
 	
 
 }
+#classification2{
+	background-color: #acb0b8;;
+	display:grid;
+	width:100%;
+	height:100%;
+	/* padding: 5px; */
+	/*grid-template-columns:1fr 1fr 3fr;*/
+	grid-template-rows: repeat(8,1fr);
+	grid-gap:3px;
+
+}
+
 .level{
 	display:grid;
 	grid-template-columns: 1fr 1fr 3fr;
@@ -277,7 +289,7 @@ html, body{
 	height: 440px;
 	font-size: 1.3em;
 	padding: 10px;
-	top: 200px;
+	top: 90px;
     left: 540px;
 	margin: auto;
 	box-shadow: 15px 13px 20px rgb(49, 47, 47);
@@ -420,15 +432,16 @@ color: green;
  #Presentation img:hover{
 	cursor:pointer;
 }
-#Classification,#Classification2{
+#Classification{
 	background-color: #BAD4FF;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 }
+
 #Presentation .Info{
-	top: -80%;
-	transform: translateY(-80%);	
+	position:relative;
+	top: 20%;	
 	margin-left:50px;
 	max-width:80%;
 	margin-top:0px;

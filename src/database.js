@@ -35,9 +35,9 @@ class database{
 	}
 	initialState(last_level){
 		var total_levels = this.levels.length-1
-		for (var i=0; i<last_level;i++){
-			var level = this.levels[total_levels-i-1]
-			level.domElement.children[1].style.backgroundColor="#9196DF";
+		for (var i=0; i<total_levels;i++){
+			var level = this.levels[total_levels-i-1];
+			level.domElement.style.backgroundColor="#1064D4";
 		}
 	}
 	initClassification(){

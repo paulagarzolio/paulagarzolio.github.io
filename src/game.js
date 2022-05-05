@@ -14,17 +14,17 @@ var Game={
 				question: "Cúal es la red social que daña mas la opinion que  los usuarios  tienen de su cuerpo?",
 				answers: ["Instagram","Facebook","Twitter","Snapchat"],
 				correct:0
-			}// },
-			// {
-			// 	question: "Cuántas imágenes nuevas se suben cada hora a Instagram?",
-			// 	answers: ["200 millones","10 mil","10 millones","500 mil"],
-			// 	correct:2
-			// },
-			// {
-			// 	question: "Cuál es el colectivo más afectado por los problemas relacionados con el Body Image?",
-			// 	answers: ["Chicas adolescentes","Mujeres","Hombres","Chicos adolescentes"],
-			// 	correct:0
-			// }
+			 },
+			 {
+			 	question: "Cuántas imágenes nuevas se suben cada hora a Instagram?",
+			 	answers: ["200 millones","10 mil","10 millones","500 mil"],
+			 	correct:2
+			 },
+			 {
+			 	question: "Cuál es el colectivo más afectado por los problemas relacionados con el Body Image?",
+			 	answers: ["Chicas adolescentes","Mujeres","Hombres","Chicos adolescentes"],
+			 	correct:0
+			}
 		],
 		ENGLISH: [
 			{
@@ -52,6 +52,7 @@ var Game={
 		}	
 	},
 	showCorrect: function(){
+		Game.correctAnswer();
 		var div=query("#Result");
 		div.style.display="";
 		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
@@ -61,6 +62,7 @@ var Game={
 		div.children[1].style.width="750px"
 	},
 	showIncorrect: function(){
+		Game.incorrectAnswer();
 		var div=query("#Result");
 		div.style.display="";
 		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
@@ -101,18 +103,8 @@ var Game={
 		var title = document.createElement("div");
 		title.className="title";
 		title.innerHTML="QUIÉN QUIERE SER INFLUENCER?";
-	
-		Game.initGame();
-		var classification=query("#levels").cloneNode(true);
-		div.style.display= "grid";
-		div.style.gridTemplateColumns= "1fr 1fr";
-		classification.children[0].id="classification2";
-		classification.style.gridColumn="2/3";
-		classification.style.width="70%";
-		classification.style.margin="auto";
-		classification.style.marginTop="170px";
 		div.appendChild(title);
-		div.appendChild(classification);
+		Game.initGame();
 		var message = document.createElement("div");
 		message.innerHTML = "En esta prueba, deberás enfrentarte a una serie de preguntas en las que solo una respuesta es correcta. \
 			        Tras cada pregunta irás subiendo de nivel, pero si te equivocas tendrás que volver a empezar y perderás todos los likes ganados. \
@@ -120,6 +112,16 @@ var Game={
 		message.className="Info";
 		message.style.gridColumn="1/2";
 		div.appendChild(message);
+		var classification=query("#levels").cloneNode(true);
+		div.style.display= "grid";
+		div.style.gridTemplateColumns= "1fr 1fr";
+		classification.children[0].id="classification2";
+		classification.style.gridColumn="2/3";
+		classification.style.width="70%";
+		classification.style.margin="auto";
+		classification.style.marginTop="60px";
+		classification.children[0].children[7].style.backgroundColor="#1064D4";
+		div.appendChild(classification);
 		speakDescription(message.innerHTML);
 		setTimeout(function(){showLevelUp(1)},20000);
 	},
@@ -238,7 +240,7 @@ function showResults(){
 	var dialogues = {
 		ESPAÑOL: [
 			{
-				intro: ["Felicidades, has llegado hasta los "+Game.actualQuestion+" me gusta."],
+				intro: ["Felicidades, has llegado hasta los "+Game.db.levels[7-Game.level].name+" me gusta."],
 				answers: ""
 				
 			},
@@ -269,7 +271,7 @@ function showResults(){
 				var text =document.createElement("div");
 				text.innerHTML="En este reto deberás jugar al juego Yo Nunca Nunca. \nIrán apareciendo una serie de cartas con cosas que pueden o no habeertee pasado en redes sociales. Deberás arrastrar la carta a la derecha si las has hecho o hacia la izquierda si no.";
 				text.className ="Info";
-				text.style.top="50%";
+				text.style.top="5%";
 				text.style.transform="translateY(50%)";	
 				divPres.appendChild(text);
 				speakDescription(text.innerHTML);
@@ -316,20 +318,19 @@ function showResults(){
 function onClickAnswer(){
 	var img = this.children[0];
 	if(Game.db.questions[Game.actualQuestion].isCorrect(this.id)){
-		img.src="correct.png";
-		Game.correctAnswer();
+		setTimeout(function(){img.src="correct.png";},800);
 		setTimeout(Game.showCorrect,2000);
 		setTimeout(showLevelUp,5000);
 	}
 	else {
-		img.src="incorrect.png";
-		Game.incorrectAnswer();
+		setTimeout(function(){img.src="incorrect.png";},800);
 		setTimeout(Game.showIncorrect,2000);
 		setTimeout(showLevelUp,5000);
 		
 	}
 	//setTimeout(showNextQuestion,3000);
-	
-	
+}
 
+function juegoTerminado(){
+	console.log("Juego Terminado");
 }

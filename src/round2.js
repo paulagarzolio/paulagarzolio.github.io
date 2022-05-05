@@ -68,7 +68,10 @@ var Round2= {
 			card.attachEvent('onmousedown', this.ratonPulsado);
 			card.attachEvent('onmouseup', this.ratonSoltado);
 			document.attachEvent('onmousemove', this.ratonMovido);
-		}      
+		} 
+		if (cardIndex <0){
+			juegoTerminado();
+		}     
 	},
 	play: function(){
 		
