@@ -490,3 +490,31 @@ color: green;
 .avatar:hover{
 	cursor:pointer;
 }
+.title2{
+	font-family: 'Varela', sans-serif;
+	font-size:20px;
+	text-align: center;
+	margin: 20px;
+}
+.contador{
+	background: rgb(170, 170, 170);
+	padding:5px;
+	width: 250px;
+	height: 60px;
+	text-align: center;
+	margin: auto;
+	border-radius:10px;
+}
+#bar{
+	background: rgb(10, 18, 31);
+	width: 250px;
+	height: 60px;
+	border-radius:10px;
+}
+#points{
+	top: -160%;
+	transform: translateY(-160%);
+	color:rgb(235, 235, 241);
+	font-size:23px;
+	font-family: 'Varela', sans-serif;
+}

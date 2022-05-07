@@ -6,11 +6,12 @@ document.addEventListener('DOMContentLoaded',function(){
 var init = {
 	initGame: function(){
 		console.log("Juego iniciado")
-		initFirstScene();
-		// query("#cargando").style.display="none";
-		// query("#FirstScene").style.display="none";
-		// query("#Round2").style.display="none";
-		// initFirstGame();
+		//initFirstScene();
+		query("#cargando").style.display="none";
+		query("#FirstScene").style.display="none";
+		query("#Round2").style.display="none";
+		// initSecondGame();
+		juegoTerminado();
 	}
 }
 

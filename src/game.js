@@ -4,6 +4,7 @@ var Game={
 	round: 0,
 	level:0,
 	language:"ESPAÑOL",
+	points:0,
 	db: [],
 	domElement: 0,
 	actualQuestion:0,
@@ -251,6 +252,7 @@ function showResults(){
 		]
 			
 	}
+	Game.points=Game.db.levels[7-Game.level].name;
 	Dialogue.messages=[];
 	Dialogue.nextMessage=function(){
 		var that= Dialogue;
@@ -333,4 +335,11 @@ function onClickAnswer(){
 
 function juegoTerminado(){
 	console.log("Juego Terminado");
+	query("body").style.backgroundImage="url('background.jpg')";
+	query("#Round2").style.display="none";
+	var div=query("#finalScreen").cloneNode(true);
+	query("body").appendChild(div)
+	div.style.display="";
+	var contDiv= div.children[2];
+	contDiv.children[1].innerHTML=Game.points+2000;
 }

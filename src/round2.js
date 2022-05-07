@@ -56,6 +56,10 @@ var Round2= {
 	},
 	nextCard: function(){
 		var cardIndex = this.actualCard-1;
+		if (cardIndex <0){
+			juegoTerminado();
+			return
+		}    
 		var card= query(".cards-list").children[cardIndex];
 		this.actualCard=cardIndex;
 		this.actualCardDOM=card;
@@ -69,9 +73,7 @@ var Round2= {
 			card.attachEvent('onmouseup', this.ratonSoltado);
 			document.attachEvent('onmousemove', this.ratonMovido);
 		} 
-		if (cardIndex <0){
-			juegoTerminado();
-		}     
+		 
 	},
 	play: function(){
 		
