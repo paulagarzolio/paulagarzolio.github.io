@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded',function(){
 var init = {
 	initGame: function(){
 		console.log("Juego iniciado")
-		// initFirstScene();
-		query("#cargando").style.display="none";
-		query("#FirstScene").style.display="none";
-		query("#Round2").style.display="none";
-		initFirstGame();
+		initFirstScene();
+		// query("#cargando").style.display="none";
+		// query("#FirstScene").style.display="none";
+		// query("#Round2").style.display="none";
+		// initFirstGame();
 	}
 }
 
@@ -167,10 +167,13 @@ function initSecondGame(){
 	body.style.background="url(fondoQuestion.jpg)";
 	texts=["felt unhappy because of my number of likes in a photo", "unfollowed a public figure because I was envious of his life",
 	"used photo retouching editors to modify something you don't like about your body","bought the same clothes as an influencer to feel prettier"+
-	"used a face filter because I thought I would appear niicer on a photo"]
+	"used a face filter because I thought I would appear nicer on a photo"]
+	texts_spanish=["me he sentido triste por recibir pocos likes en una foto","he dejado de seguir a una figura pública porque tenia envidia de su vida",
+	"he usado aplicacions para retocar alguna parte que no me gustaba de mi cuerpo","he comprado las mismas prendas de ropa que un/a influencer para sentirme más guapo/a",
+	"he usado un filtro de Instagram/Snapchat para salir mejor en una foto"]
 	urls=["img/never1.png","img/never2.png","img/never3.png","img/never4.png","img/never5.png"];
 	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)"];
-	Round2.init(urls,texts,colors);
+	Round2.init(urls,texts_spanish,colors);
 
 }
 var avatar;

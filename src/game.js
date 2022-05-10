@@ -17,6 +17,17 @@ var Game={
 				correct:0
 			 },
 			 {
+				question: "¿Cúal es el símbolo de los likes en Instagram?",
+				answers: ["Pulgar","Corazón","Estrella","Ninguno de los anteriores"],
+				correct:1
+			 },
+			 {
+				question: "¿Qué porcentaje de usuarios crees que usan filtros o editan sus fotos antes de publicarlas?",
+				answers: ["10%","90%","60%","2%"],
+				correct:2
+			 },
+			 
+			 {
 			 	question: "¿Cuántas imágenes nuevas se suben cada hora a Instagram?",
 			 	answers: ["200 millones","10 mil","10 millones","500 mil"],
 			 	correct:2
@@ -43,9 +54,14 @@ var Game={
 			},
 			{
 				question: "¿Cuál de las siguientes redes sociales tiene un efecto positivo en la salud mental de los jóvenes?",
-				answers: ["Snapchat%","TikTok","Youtube%","Instagram"],
+				answers: ["Snapchat","TikTok","Youtube","Instagram"],
 				correct:2
-			}
+			},
+			{
+				question: "¿Qué partes del cuerpo son las más retocadas por los usuarios?",
+				answers: ["Imperfecciones en la piel","Forma de la cara","Pelo","Ojos"],
+				correct:0
+			 },
 
 
 		],

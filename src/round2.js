@@ -28,7 +28,6 @@ var Round2= {
 
 	init: function(urls,texts,colors){
 		DOM = query("#cards_list");
-		query(".title").fontSize="65px";
 		var card =this.addCard(urls[0],texts[0],colors[0]); 
 		var position_init= this.getPosicion(card);
 		this.cardPosx = position_init[1];
