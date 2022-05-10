@@ -17,7 +17,7 @@ html, body{
 	grid-template-rows: 1fr 2fr 1fr;
 	left:50%;
 }
-.Button:hover{
+.Button{
 	cursor:pointer;
 }
 .portada {
@@ -35,7 +35,7 @@ html, body{
 	margin-left: auto;
 	margin-right: auto;	
 }
-#closeButton:hover{
+#closeButton{
 	cursor:pointer;
 }
 #closeButton{
@@ -100,7 +100,7 @@ html, body{
 	text-decoration: underline;
 	margin:50px;
 }
-.language:hover{
+.language{
 	cursor:pointer;
 }
 
@@ -154,6 +154,7 @@ html, body{
 	margin-left: 30px;
 }
 #Round1 .Question img{
+	
 	max-width:100%;
 	grid-area:total;
 }
@@ -168,6 +169,7 @@ html, body{
 
 }
 #Round1 .Question button{
+	cursor:pointer;
 	border-style: none;
 	background-color: transparent;
 	margin: 0;
@@ -430,8 +432,8 @@ color: green;
 	color: rgb(226, 225, 225);
 
 }
-.Response:hover,
- #Presentation img:hover{
+.Response,
+ #Presentation img{
 	cursor:pointer;
 }
 #Classification{
@@ -494,7 +496,7 @@ color: green;
 .avatar{
 	background-color:rgba(0, 0, 0, 0.35);
 }
-.avatar:hover{
+.avatar{
 	cursor:pointer;
 }
 .title2{

@@ -46,6 +46,11 @@ function popOffLanguage(){
 
 function chooseLanguage(that){
 	Game.language = that.innerHTML;
+	var divs=document.querySelectorAll(".language");
+	for(var i=0;i<divs.length;i++){
+		divs[i].style.color="beige";
+	}
+	that.style.color ="blue";
 
 }
 function cargando(){
