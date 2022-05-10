@@ -333,7 +333,12 @@ function showResults(){
 				text.style.top="5%";
 				text.style.transform="translateY(50%)";	
 				text.style.textAlign="center";
+				var img = document.createElement("img");
+				img.src="GIF.gif";
+				img.style.height="320px";
+				img.style.marginTop= "10%";
 				divPres.appendChild(text);
+				divPres.appendChild(img);
 				speakDescription(text.innerHTML);
 				setTimeout(initSecondGame,14000);
 

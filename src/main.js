@@ -340,16 +340,17 @@ function speakDescription(text)
 	var lang;
 	if(Game.language=="ESPAÑOL")lang='es-ES';
 	if(Game.language=="ENGLISH")lang='en-US';
-    if(voices[i].lang){
-        while(voices[i].lang!=lang)
-        {
-            i++; 
-        }
-        utterThis.voice = voices[i];
+    if(voices.length>0){
+		if(voices[i].lang){
+			while(voices[i].lang!=lang)
+			{
+				i++; 
+			}
+			utterThis.voice = voices[i];
 
-        //speak
-        speechSynthesis.speak( utterThis );
-    }
-
+			//speak
+			speechSynthesis.speak( utterThis );
+		}
+	}
 }
 
