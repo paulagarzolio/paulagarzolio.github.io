@@ -96,7 +96,11 @@ var Game={
 		div.style.display="";
 		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
 		div.style.color= "rgb(0, 157, 33)";
-		div.children[0].innerHTML ="Correcto. Muy bien!";
+		var resLang = {
+			ESPAÑOL:"Correcto. Muy bien!",
+			ENGLISH: "Correct. Very good!"
+		}
+		div.children[0].innerHTML =resLang[Game.language];
 		div.children[1].src="correct.gif";
 		div.children[1].style.width="750px"
 	},
@@ -106,7 +110,11 @@ var Game={
 		div.style.display="";
 		div.style.backgroundColor= "rgba(250, 240, 187, 0.78)";
 		div.style.color= "rgb(238, 38, 38)";
-		div.children[0].innerHTML ="Incorrecto... A la siguiente va la vencida";
+		var resLang = {
+			ESPAÑOL:"Incorrecto... A la siguiente va la vencida!",
+			ENGLISH: "Incorrect... Try again!"
+		}
+		div.children[0].innerHTML =resLang[Game.language];
 		div.children[1].src="incorrect.gif";
 		div.children[1].style.width="550px"
 	},
@@ -175,13 +183,23 @@ var Game={
 		div.style.backgroundImage="none";
 		var title = document.createElement("div");
 		title.className="title";
-		title.innerHTML="QUIÉN QUIERE SER INFLUENCER?";
+		var titleLang = {
+			ESPAÑOL: "QUIÉN QUIERE SER INFLUENCER?",
+			ENGLISH: "WHO WANTS TO BE AN INFLUENCER?"
+		}
+		title.innerHTML=titleLang[Game.language];
 		div.appendChild(title);
 		Game.initGame();
 		var message = document.createElement("div");
-		message.innerHTML = 'En esta prueba, deberás enfrentarte a una serie de preguntas en las que solo una respuesta es correcta. \
-			        Tras cada pregunta irás subiendo de nivel, pero si te equivocas tendrás que volver a empezar y perderás todos los "me gusta" ganados. \
-					Tendrás tan solo 3 vidas para poder demostrar cuanto sabes de redes sociales, Imagen Corporal, influencers... Aprovéchalas!';
+		var mess = {
+			ESPAÑOL:  'En esta prueba deberás enfrentarte a una serie de preguntas en las que solo una respuesta es correcta. \
+			Tras cada pregunta irás subiendo de nivel, pero si te equivocas tendrás que volver a empezar y perderás todos los "me gusta" ganados. \
+			Tendrás tan solo 3 vidas para poder demostrar cuanto sabes de redes sociales, Imagen Corporal, influencers... Aprovéchalas!',
+			ENGLISH: 'In this challenge you will have to answer some questions in which only one answer is correct. If you answer correctly the questions \
+			you will scale to the next level but if you fail you will have to restart and lose all the likes. You will have only 3 lives to demonstrate\
+			 how much you know about social media, body image, influencers, etc.'
+		};
+		message.innerHTML = mess[Game.language];
 		message.className="Info";
 		message.style.gridColumn="1/2";
 		div.appendChild(message);
@@ -306,6 +324,17 @@ function showResults(){
 				intro: ["Has demostrado tener el conocimiento necesario para poder pasar a la siguiente ronda. "],
 				answers: ""
 			}
+		],
+		ENGLISH: [
+			{
+				intro: ["Congratulations, you have gained "+Game.db.levels[7-Game.level].name+" likes."],
+				answers: ""
+				
+			},
+			{
+				intro: ["You have proven your knowledge is enough to go to the next round. "],
+				answers: ""
+			}
 		]
 			
 	}
@@ -325,10 +354,19 @@ function showResults(){
 				divPres.style.backgroundImage="none";
 				var title = document.createElement("div");
 				divPres.appendChild(title);
-				title.innerHTML = "Yo Nunca Nunca";
+				var titleLang={
+					ESPAÑOL: "Yo Nunca Nunca",
+					ENGLISH:"Never Have I Ever"
+				}
+				title.innerHTML = titleLang[Game.language];
 				title.className="title";
 				var text =document.createElement("div");
-				text.innerHTML="En este reto deberás jugar al juego Yo Nunca Nunca. \nIrán apareciendo una serie de cartas con cosas que pueden o no haberte pasado en redes sociales. Deberás arrastrar la carta a la derecha si las has hecho o hacia la izquierda si no.";
+				var lang = {
+					ESPAÑOL: "En este reto deberás jugar al juego Yo Nunca Nunca. \nIrán apareciendo una serie de cartas con cosas que pueden o no haberte pasado en redes sociales. Deberás arrastrar la carta a la derecha si las has hecho o hacia la izquierda si no.",
+
+					ENGLISH: "In this challenge you will have to play the game Never Have I ever.\n You will find different cards that you will have to classify as done or not done depending if they have happened to you in social media. You will have to drag them left or right."
+				}
+				text.innerHTML=lang[Game.language];
 				text.className ="Info";
 				text.style.top="5%";
 				text.style.transform="translateY(50%)";	

@@ -10,7 +10,7 @@ var init = {
 		// query("#cargando").style.display="none";
 		// query("#FirstScene").style.display="none";
 		// query("#Round2").style.display="none";
-		// initFirstGame();
+		// initSecondGame();
 	}
 }
 
@@ -168,17 +168,38 @@ function initSecondGame(){
 	thirdScene = query("#Round2");
 	secondScene.style.display="none";
 	thirdScene.style.display="";
+	var titleLang={
+		ESPAÑOL: "Yo Nunca Nunca",
+		ENGLISH:"Never Have I Ever"
+	}
+	var tip = {
+		ESPAÑOL: "Arrastrar la carta hacia la derecha o la izquierda",
+		ENGLISH: "Drag the card to the left or to the right"
+	}
+//	query("#Round2 #accept p").innerHTML=
+	thirdScene.children[0].innerHTML=titleLang[Game.language];
+	thirdScene.children[1].innerHTML = tip[Game.language];
 	body=query("body");
 	body.style.background="url(fondoQuestion.jpg)";
-	texts=["felt unhappy because of my number of likes in a photo", "unfollowed a public figure because I was envious of his life",
-	"used photo retouching editors to modify something you don't like about your body","bought the same clothes as an influencer to feel prettier"+
-	"used a face filter because I thought I would appear nicer on a photo"]
-	texts_spanish=["me he sentido triste por recibir pocos likes en una foto","he dejado de seguir a una figura pública porque tenia envidia de su vida",
-	"he usado aplicacions para retocar alguna parte que no me gustaba de mi cuerpo","he comprado las mismas prendas de ropa que un/a influencer para sentirme más guapo/a",
-	"he usado un filtro de Instagram/Snapchat para salir mejor en una foto"]
+	var texts = {
+		ESPAÑOL: ["me he sentido triste por recibir pocos likes en una foto",
+		"he dejado de seguir a una figura pública porque tenia envidia de su vida",
+		"he usado aplicacions para retocar alguna parte que no me gustaba de mi cuerpo",
+		"he comprado las mismas prendas de ropa que un/a influencer para sentirme más guapo/a",
+		"he usado un filtro de Instagram/Snapchat para salir mejor en una foto"],
+
+		ENGLISH: ["felt unhappy because of my number of likes in a photo", 
+		"unfollowed a public figure because I was envious of his life",
+		"used photo retouching editors to modify something you don't like about your body",
+		"bought the same clothes as an influencer to feel prettier",
+		"used a face filter because I thought I would appear nicer on a photo"
+
+		]
+
+	}
 	urls=["img/never1.png","img/never2.png","img/never3.png","img/never4.png","img/never5.png"];
-	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)"];
-	Round2.init(urls,texts_spanish,colors);
+	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)","rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)"];
+	Round2.init(urls,texts[Game.language],colors);
 
 }
 var avatar;
@@ -222,6 +243,7 @@ var Dialogue = {
 			answer0.id = 0;
 			answer1.id=1;
 			answer0.addEventListener("click",Dialogue.nextMessage);
+			
 			answer1.addEventListener("click",Dialogue.nextMessage);
 		}
 		else {
@@ -283,6 +305,7 @@ var Dialogue = {
 		query("#story").scrollTop=10000;
 	},
 	nextMessage: function(){
+		speechSynthesis.cancel()
 		var that= Dialogue;
 		if(that.actualMessage==that.messages.length){
 			initFirstGame();
