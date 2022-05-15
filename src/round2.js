@@ -27,12 +27,16 @@ var Round2= {
 	},
 
 	init: function(urls,texts,colors){
+		modColors = colors.length;
+		modUrls = urls.length;
 		DOM = query("#cards_list");
 		var card =this.addCard(urls[0],texts[0],colors[0]); 
 		var position_init= this.getPosicion(card);
 		this.cardPosx = position_init[1];
-		this.addCard(urls[1],texts[1],colors[1]);
-		this.addCard(urls[2],texts[2],colors[2]);
+		for (var i=1; i<texts.length;i++){
+			this.addCard(urls[i%modUrls],texts[i],colors[i%modColors]);
+		}
+		
 		this.play();
 	},
 

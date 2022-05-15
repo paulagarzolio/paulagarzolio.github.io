@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded',function(){
 
 var init = {
 	initGame: function(){
+		speechSynthesis.cancel();
 		console.log("Juego iniciado")
-		initFirstScene();
-		// query("#cargando").style.display="none";
-		// query("#FirstScene").style.display="none";
-		// query("#Round2").style.display="none";
-		// initSecondGame();
+		// initFirstScene();
+		query("#cargando").style.display="none";
+		query("#FirstScene").style.display="none";
+		query("#Round2").style.display="none";
+		initFirstGame();
 	}
 }
 
@@ -125,7 +126,7 @@ function initSecondScene(){
 				answers: ["What is body image?","I am not sure if I am following..."]
 			},
 			{
-				intro: ["Body Image is the idea or perception that a person has of his physical appearance. In other words, how attractive we feel and believe others see us. Social media are the main cause of bad body image perception.", "To understand it, it is important to know the concept of body image. Body Image is the idea or perception that a person has of his physical appearance. In other words, how attractive we feel and believe others see us. Social media are the main cause of bad body image perception."],
+				intro: ["Body Image is the idea or perception that a person has of his physical appearance. In other words, how attractive we feel and believe others see us. Social media are the main cause of negative body image perception.", "To understand it, it is important to know the concept of body image. Body Image is the idea or perception that a person has of his physical appearance. In other words, how attractive we feel and believe others see us. Social media are the main cause of bad body image perception."],
 				answers: ""
 			},
 			{
@@ -182,24 +183,64 @@ function initSecondGame(){
 	body=query("body");
 	body.style.background="url(fondoQuestion.jpg)";
 	var texts = {
-		ESPAÑOL: ["me he sentido triste por recibir pocos likes en una foto",
-		"he dejado de seguir a una figura pública porque tenia envidia de su vida",
-		"he usado aplicacions para retocar alguna parte que no me gustaba de mi cuerpo",
+		ESPAÑOL: ["Me he sentido triste por recibir pocos likes en una foto",
+		"He dejado de seguir a una figura pública porque tenia envidia de su vida",
+		"He usado aplicacions para retocar alguna parte que no me gustaba de mi cuerpo",
 		"he comprado las mismas prendas de ropa que un/a influencer para sentirme más guapo/a",
-		"he usado un filtro de Instagram/Snapchat para salir mejor en una foto"],
+		"He usado un filtro de Instagram/Snapchat para salir mejor en una foto",
+		"He comparado los likes/seguidores de un amigo con los mios",
+		"He utlizado una pose específica en una foto para verme más delgad@",
+		"He revisado mi foto muchas veces para asegurarme que me veia bien antes de colgarla",
+		"He ido a sacarme fotos solo para poder subirlas",
+		"He dejado algun comentario negativo a un usuario por envidia",
+		"Me he sentido mal por lo que me ha comentado alguien en una foto",
+		"Me he instalado una app para ver quien me dejaba de seguir",
+		"He seguido a gente desconocida para ganar más seguidores",
+		"He compartido cosas que me he comprado para presumir",
+		"Me he arreglado solo para compartir una foto donde me viera bien",
+		"He desactivado los comentarios de mis fotos por miedo al qué dirán",
+		"Me he desactivado la cuenta de Instagram porque me estaba creando un efecto negativo",
+		"He criticado a alguien por una foto que ha subido",
+		"He revisado el móvil muchas veces para comprobar si alguien me había hablado en alguna red social",
+		"Lo primero que hago al despertar es mirar el móvil",
+		"Me he sentido peor conmigo mism@ al ver fotos de otros usuarios",
+		"He querido seguir cuentas más reales en Instagram",
+		'He hecho algun "trend" que me parecia ridiculo solo porque todo el mundo lo estaba haciendo',
+		"Me he sentido muy segur@ conmigo mism@ por recibir un gran numero de likes y comentarios"
 
-		ENGLISH: ["felt unhappy because of my number of likes in a photo", 
-		"unfollowed a public figure because I was envious of his life",
-		"used photo retouching editors to modify something you don't like about your body",
-		"bought the same clothes as an influencer to feel prettier",
-		"used a face filter because I thought I would appear nicer on a photo"
+		],
 
+		ENGLISH: ["I have felt unhappy because of my number of likes in a photo", 
+		"I have unfollowed a public figure because I was envious of his life",
+		"I have used photo retouching editors to modify something you don't like about your body",
+		"I have bought the same clothes as an influencer to feel prettier",
+		"I have used a face filter because I thought I would appear nicer on a photo",
+		"I have compared thee number of likes/followers of a friend and mines",
+		"I have used a specific pose in a photo to look thinner",
+		"I have checked my photo multiple times to ensure I looked good on it before posting it",
+		"I have taken pictures just to post them",
+		"I have written a negative comment to another user because I was envious",
+		"I have felt bad for someone's comment in my picture",
+		"I have installed an application to see how unfollowed me",
+		"I have followed unknown users to gain more followers",
+		"I have shared things I have bought to show off",
+		"I have gotten ready just to share a photo were I looked good",
+		"I have deactivated my photos comments because I was scared of people's opinion",
+		"I have deactivated my Instagram account because it was producing a negative effect on me",
+		"I have criticized someone's photo posted",
+		"I have checked my phone many times to ensure nobody had sent me a message",
+		"The first thing I do when I wake up is to check my phone.",
+		"I have felt worse with myself after seeing photos of other users",
+		"I have wanted to follow more real profiles on Instagram",
+		"I have done some ridicolous trend just because everyone was sharing it",
+		"I have felt confident with myself after receiving lots of likes and comments"
 		]
 
 	}
 	urls=["img/never1.png","img/never2.png","img/never3.png","img/never4.png","img/never5.png"];
-	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)","rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)"];
-	Round2.init(urls,texts[Game.language],colors);
+	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)"];
+	var finalList = texts[Game.language].sort(function(){return Math.random()-0.5});
+	Round2.init(urls,finalList.splice(0,15),colors);
 
 }
 var avatar;
@@ -305,7 +346,7 @@ var Dialogue = {
 		query("#story").scrollTop=10000;
 	},
 	nextMessage: function(){
-		speechSynthesis.cancel()
+		speechSynthesis.cancel();
 		var that= Dialogue;
 		if(that.actualMessage==that.messages.length){
 			initFirstGame();
