@@ -271,6 +271,14 @@ var Game={
 
 	},
 	showPresentation: function(url){
+		// var audioContext2 = window.AudioContext          // Default
+        //       || window.webkitAudioContext; 
+		var audio1 = document.createElement('audio');
+		audio1.src= "presentacion.mov";
+		audio1.id="audioPresentation";
+		audio1.loop = false;
+		query("body").appendChild(audio1);
+		audio1.play();
 		var div=query("#Presentation");
 		query("#Round1").style.display="none";
 		div.style.display="";
@@ -279,7 +287,11 @@ var Game={
 		body.style.background="#D7BCFD";
 		div.style.backgroundSize="850px";
 		div.style.backgroundPosition="center 20px";
-		if(Game.round==1)setTimeout(Game.showPresentation2,4000);
+		if(Game.round==1)setTimeout(function(){
+			query("#audioPresentation").pause();
+			query("#audioPresentation").remove();
+			Game.showPresentation2();
+		},4000);
 
 		
 	},
@@ -457,6 +469,8 @@ function showResults(){
 			query("#Presentation").children[0].remove();
 			query("#Presentation").children[0].remove();
 			setTimeout(function(){
+				query("#audioPresentation").pause();
+				query("#audioPresentation").remove();
 				var divPres = query("#Presentation");
 				divPres.style.backgroundImage="none";
 				var title = document.createElement("div");
@@ -531,27 +545,28 @@ function onClickAnswer(){
               || window.webkitAudioContext;  // Safari and old versions of Chrome
 	//this.audioContext = new AudioContext();
 	//load audio
-	var audio2 = document.createElement('audio');
-	audio2.id="audioRedoble";
-	query("body").appendChild(audio2);
-	audio2.src="redoble.mp3";
-	audio2.loop=false;
-	audio2.play();
+	// var audio2 = document.createElement('audio');
+	// audio2.id="audioRedoble";
+	// query("body").appendChild(audio2);
+	// audio2.src="redoble.mp3";
+	// audio2.loop=false;
+	// audio2.play();
 	
 	var audio1 = document.createElement('audio');
+	audio1.src= "redoble.mov";
 	audio1.id="audioAnswer";
+	audio1.play();
 	query("body").appendChild(audio1);
 	if(Game.db.questions[Game.actualQuestion].isCorrect(this.id)){
-		setTimeout(function(){img.src="correct.png"; 
-		query("#audioRedoble").pause();
-		query("#audioRedoble").remove();
-		},800);
+		setTimeout(function(){query("#audioAnswer").pause();
+		img.src="correct.png"; 
+		},1800);
 		setTimeout(function(){
 			audio1.src = "correcto.mov";
 			audio1.loop = false;
 			audio1.play();
 			Game.showCorrect();
-		},2000);
+		},2600);
 		setTimeout(function(){
 			showLevelUp(),
 			query("#audioAnswer").pause();
@@ -562,16 +577,16 @@ function onClickAnswer(){
 		var questionDom=Game.db.questions[Game.actualQuestion];
 		var correct = "#"+questionDom.correctAnswer+" img";
 		setTimeout(function(){
+			query("#audioAnswer").pause();
 			img.src="incorrect.png";
 			query(correct).src="correct.png";
-			query("#audioRedoble").pause();
-			query("#audioRedoble").remove();},800);
+			},1800);
 		setTimeout(function(){
 			audio1.src = "incorrecto.mov";
 			audio1.loop = false;
 			audio1.play();
 			Game.showIncorrect();
-		},2000);
+		},2600);
 		setTimeout(function(){
 			showLevelUp(1000*(Game.level+1));
 			query("#audioAnswer").pause();

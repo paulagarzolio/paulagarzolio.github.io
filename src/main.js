@@ -7,11 +7,7 @@ var init = {
 	initGame: function(){
 		speechSynthesis.cancel();
 		console.log("Juego iniciado")
-		// initFirstScene();
-		query("#cargando").style.display="none";
-		query("#FirstScene").style.display="none";
-		query("#Round2").style.display="none";
-		initFirstGame();
+		initFirstScene();
 	}
 }
 
