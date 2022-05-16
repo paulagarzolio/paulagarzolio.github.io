@@ -8,6 +8,7 @@ var init = {
 		speechSynthesis.cancel();
 		console.log("Juego iniciado")
 		initFirstScene();
+		
 	}
 }
 
@@ -19,10 +20,11 @@ function initFirstScene(){
 	query("#cargando").style.display="none"
 	firstScene=query("#FirstScene");
 	thirdScene = query("#Round2");
+	firstScene.children[2].src="/content/"+Game.language+".png";
 	thirdScene.style.display="none";
 	firstScene.style.display="block";
 	body=query("body");
-	body.style.background="url(background.png)"
+	body.style.background="url(content/background.png)"
 	body.style.backgroundSize="1450px auto";
 	body.style.backgroundColor="#b4f8ff";
 	body.style.backgroundRepeat="no-repeat";
@@ -48,12 +50,14 @@ function chooseLanguage(that){
 		divs[i].style.color="beige";
 	}
 	that.style.color ="blue";
+	firstScene=query("#FirstScene");
+	firstScene.children[2].src="/content/"+Game.language+".png";
 
 }
 function cargando(){
 	query("#FirstScene").style.display="none";
 	body=query("body");
-	body.style.background="url(background.jpg)";
+	body.style.background="url(content/background.jpg)";
 	body.style.backgroundSize="1450px auto";
 	body.style.backgroundColor="#b4f8ff";
 	body.style.backgroundRepeat="no-repeat";
@@ -74,22 +78,19 @@ function initSecondScene(){
 	query("#FirstScene").style.display="none";
 	var sceneDiv= query("#SecondScene");
 	sceneDiv.style.display="";
-	//var messages = "Hola, te estábamos esperando!;A mi?;Que hago yo aquí?$Si, a ti. Pronto vas a entender el motivo. Antes de nada, elige a tu personaje para empezar.;No te preocupes, pronto vas a entenderlo todo. Antes de nada, elige a tu personaje para empezar.;;$Verás, desde hace unos años las redes sociales se han convertido en un lugar cada vez más solitario y cruel con unos estandares de belleza con los que muchos usarios no se sienten identificados. La imagen corporal de muchos de ellos, ha quedado afectada por estos estandares y los usuarios se sienten cada vez más inseguros con sus cuerpos.;\
-	//Qué es la Imagen Corporal?;Entiendo...$La imagen corporal es la idea que cada uno tiene de su propia aspecto físico y de cómo le ven los demás.;;;$Esta sociedad te necesita para solucionar el problema.;Porque a mi?;¿Cómo?$A lo largo de este minijuego, encontrarás retos para poder encontrar la clave y evitar que este problema empeore. La humanidad te necesita!;Adelante!;No se si estoy preparado/a...\
-	//$No te preocupes, siguiendo mis indicaciones serás capaz de conseguirlo.";
 	var dialogues = {
 		ESPAÑOL: [
 			{
 				intro: ["¡Hola, te estábamos esperando!"],
-				answers: ["¿A mi?","¿Que hago yo aquí?"]
+				answers: ["¿A mí?","¿Qué hago yo aquí?"]
 			},
 			{
 				intro: ["Si, a ti. Pronto vas a entender el motivo. Antes de nada, elige a tu personaje para empezar.","No te preocupes, pronto vas a entenderlo todo. Antes de nada, elige a tu personaje para empezar."],
 				answers: ""
 			},
 			{
-				intro: ["Verás, desde hace unos años las redes sociales se han convertido en un lugar cada vez más solitario y cruel con unos estandares de belleza con los que muchos usuarios no se sienten identificados. La imagen corporal de muchos de ellos, ha quedado afectada por estos estereotipos y los usuarios se sienten cada vez más inseguros con sus cuerpos."],
-				answers: ["¿Qué es la Imagen Corporal?","No se si lo entiendo..."]
+				intro: ["Verás, desde hace unos años las redes sociales se han convertido en un lugar cada vez más solitario y cruel, con unos estándares de belleza con los que muchos usuarios no se sienten identificados. La imagen corporal de muchos de ellos, ha quedado afectada por estos estereotipos y los usuarios se sienten cada vez más inseguros con sus cuerpos."],
+				answers: ["¿Qué es la Imagen Corporal?","No sé si lo entiendo..."]
 			},
 			{
 				intro: ["La imagen corporal es la idea o percepción que cada uno tiene de su propio aspecto físico. En otras palabras, como de atractivos nos sentimos y creemos que nos ven los demás. Las redes sociales son, a menudo, causa de una mala percepción de imagen corporal.", "Para entenderlo es muy importante conocer el concepto de imagen corporal. La imagen corporal es la idea que cada uno tiene de su propio aspecto físico. En otras palabras, como de atractivos nos sentimos y creemos que nos ven los demás. Las redes sociales son, a menudo, causa de una mala percepción de imagen corporal."],
@@ -97,11 +98,11 @@ function initSecondScene(){
 			},
 			{
 				intro: ["Esta sociedad te necesita para solucionar el problema."],
-				answers: ["¿Porque a mi?","Sigo sin entenderlo."]
+				answers: ["¿Por qué a mi?","Sigo sin entenderlo."]
 			},
 			{
-				intro: ["Tú eres la única persona capaz de cambiar la manera de ver tu propia imagen corporal. A lo largo de este minijuego, encontrarás una série de retos que te ayudaran a entender mejor este problema.","A lo largo de este minijuego, encontrarás retos que te ayudaran a entender mejor este problema y como tu puedes aportar tu granito de arena para solucionarlo."],
-				answers: ["¡Adelante!","No se si estoy preparado/a..."]
+				intro: ["Tú eres la única persona capaz de cambiar la manera de ver tu propia imagen corporal. A lo largo de este minijuego, encontrarás una serie de retos que te ayudaran a entender mejor este problema.","A lo largo de este minijuego, encontrarás retos que te ayudaran a entender mejor este problema y como tú puedes aportar tu granito de arena para solucionarlo."],
+				answers: ["¡Adelante!","No sé si estoy preparado/a..."]
 			},
 			{
 				intro: ["¡Mucha suerte!","No te preocupes, siguiendo mis indicaciones serás capaz de conseguirlo."],
@@ -110,15 +111,15 @@ function initSecondScene(){
 		],
 		ENGLISH: [
 			{
-				intro: ["Hello, we were looking forward to meet you!"],
+				intro: ["Hello, we were looking forward to meeting you!"],
 				answers: ["To meet me?","What am I doing here?"]
 			},
 			{
-				intro: ["Yes, you. You will soon understand why. Before starting, choose your favourite avatar. ","Don't worry, you will understand everything soon. Before starting, choose your favourite avatar."],
+				intro: ["Yes, you. You will soon understand why. Before starting, choose your favorite avatar. ","Don't worry, you will understand everything soon. Before starting, choose your favorite avatar."],
 				answers: ""
 			},
 			{
-				intro: ["Social media have become an increasingly lonely and cruel place with beauty standards with which many users do not feel identified. Their body image has been affected by these stereotypes and it has influenced users to feel more insecure with themselves."],
+				intro: ["Social media have become an increasingly lonely and cruel place with beauty standards with which many users do not feel identified. Their body image has been affected by these stereotypes, and it has influenced users to feel more insecure with themselves."],
 				answers: ["What is body image?","I am not sure if I am following..."]
 			},
 			{
@@ -130,7 +131,7 @@ function initSecondScene(){
 				answers: ["Why me?","I still don't understand it."]
 			},
 			{
-				intro: ["You are the only person capable of changing the way you see your own body image. Throughout this minigame, you will find a series of challenges that will help you better understand this problem.","Throughout this minigame, you will find a series of challenges that will help you better understand this problem and also identify how you can play your part in solving this problem."],
+				intro: ["You are the only person capable of changing the way you see your own body image. Throughout this mini-game, you will find a series of challenges that will help you better understand this problem.","Throughout this mini-game, you will find a series of challenges that will help you better understand this problem and also identify how you can play your part in solving this problem."],
 				answers: ["Ready!","I am not sure if I am ready."]
 			},
 			{
@@ -150,9 +151,8 @@ function initFirstGame(){
 	secondScene=query("#Round1");
 	secondScene.style.display="grid";
 	query(".avatar_").src=avatar;
-	// initQuestions();
 	Game.round=1;
-	Game.showPresentation("round1.png");
+	Game.showPresentation("content/round1.png");
 
 	
 }
@@ -177,16 +177,16 @@ function initSecondGame(){
 	thirdScene.children[0].innerHTML=titleLang[Game.language];
 	thirdScene.children[1].innerHTML = tip[Game.language];
 	body=query("body");
-	body.style.background="url(fondoQuestion.jpg)";
+	body.style.background="url(content/fondoQuestion.jpg)";
 	var texts = {
 		ESPAÑOL: ["Me he sentido triste por recibir pocos likes en una foto",
-		"He dejado de seguir a una figura pública porque tenia envidia de su vida",
-		"He usado aplicacions para retocar alguna parte que no me gustaba de mi cuerpo",
+		"He dejado de seguir a una figura pública porque tenía envidia de su vida",
+		"He usado aplicaciones para retocar alguna parte que no me gustaba de mi cuerpo",
 		"he comprado las mismas prendas de ropa que un/a influencer para sentirme más guapo/a",
 		"He usado un filtro de Instagram/Snapchat para salir mejor en una foto",
-		"He comparado los likes/seguidores de un amigo con los mios",
-		"He utlizado una pose específica en una foto para verme más delgad@",
-		"He revisado mi foto muchas veces para asegurarme que me veia bien antes de colgarla",
+		"He comparado los likes/seguidores de un amigo con los míos",
+		"He utilizado una pose específica en una foto para verme más delgad@",
+		"He revisado mi foto muchas veces para asegurarme que me veía bien antes de colgarla",
 		"He ido a sacarme fotos solo para poder subirlas",
 		"He dejado algun comentario negativo a un usuario por envidia",
 		"Me he sentido mal por lo que me ha comentado alguien en una foto",
@@ -201,17 +201,17 @@ function initSecondGame(){
 		"Lo primero que hago al despertar es mirar el móvil",
 		"Me he sentido peor conmigo mism@ al ver fotos de otros usuarios",
 		"He querido seguir cuentas más reales en Instagram",
-		'He hecho algun "trend" que me parecia ridiculo solo porque todo el mundo lo estaba haciendo',
-		"Me he sentido muy segur@ conmigo mism@ por recibir un gran numero de likes y comentarios"
+		'He hecho algún "trend" que me parecía ridículo solo porque todo el mundo lo estaba haciendo',
+		"Me he sentido muy segur@ conmigo mism@ por recibir un gran número de likes y comentarios"
 
 		],
 
-		ENGLISH: ["I have felt unhappy because of my number of likes in a photo", 
+		ENGLISH: ["I have felt unhappy because of my number of likes on a photo", 
 		"I have unfollowed a public figure because I was envious of his life",
 		"I have used photo retouching editors to modify something you don't like about your body",
 		"I have bought the same clothes as an influencer to feel prettier",
-		"I have used a face filter because I thought I would appear nicer on a photo",
-		"I have compared thee number of likes/followers of a friend and mines",
+		"I have used a face filter because I thought I would appear nicer in a photo",
+		"I have compared the number of likes/followers of a friend and mines",
 		"I have used a specific pose in a photo to look thinner",
 		"I have checked my photo multiple times to ensure I looked good on it before posting it",
 		"I have taken pictures just to post them",
@@ -220,20 +220,20 @@ function initSecondGame(){
 		"I have installed an application to see how unfollowed me",
 		"I have followed unknown users to gain more followers",
 		"I have shared things I have bought to show off",
-		"I have gotten ready just to share a photo were I looked good",
-		"I have deactivated my photos comments because I was scared of people's opinion",
+		"I have gotten ready just to share a photo where I looked good",
+		"I have deactivated the comments of my photos because I was scared of people's opinion",
 		"I have deactivated my Instagram account because it was producing a negative effect on me",
 		"I have criticized someone's photo posted",
 		"I have checked my phone many times to ensure nobody had sent me a message",
 		"The first thing I do when I wake up is to check my phone.",
 		"I have felt worse with myself after seeing photos of other users",
 		"I have wanted to follow more real profiles on Instagram",
-		"I have done some ridicolous trend just because everyone was sharing it",
+		"I have done some ridiculous trend just because everyone was sharing it",
 		"I have felt confident with myself after receiving lots of likes and comments"
 		]
 
 	}
-	urls=["img/never1.png","img/never2.png","img/never3.png","img/never4.png","img/never5.png"];
+	urls=["content/img/never1.png","content/img/never2.png","content/img/never3.png","content/img/never4.png","content/img/never5.png"];
 	colors=["rgba(249, 216, 168, 0.97)","rgba(216, 249, 168, 0.97)","rgba(168, 216, 249, 0.97)"];
 	var finalList = texts[Game.language].sort(function(){return Math.random()-0.5});
 	Round2.init(urls,finalList.splice(0,15),colors);
@@ -307,13 +307,13 @@ var Dialogue = {
 	findSrc: function(avatarsrc){
 		
         if(avatarsrc.includes('avatar1.png'))
-			avatar= "avatars/avatar1.png"; 
+			avatar= "content/avatars/avatar1.png"; 
 
         else if (avatarsrc.includes('avatar2.png'))
-			avatar= "avatars/avatar2.png"; 
+			avatar= "content/avatars/avatar2.png"; 
             
 		else if(avatarsrc.includes('avatar3.png'))
-			avatar= "avatars/avatar3.png"; 
+			avatar= "content/avatars/avatar3.png"; 
 
         return avatar
 	},
@@ -396,11 +396,7 @@ function speakDescription(text)
 {
     //get voices list
     var voices = speechSynthesis.getVoices();
-    // var text = "Bienvenido al museo del mundo"; 
-    //create sentence
     var utterThis = new SpeechSynthesisUtterance( text );
-    // utterThis.lang = ''
-    //assign voice, be careful as voices have a language associated
     var i =0; 
 	var lang;
 	if(Game.language=="ESPAÑOL")lang='es-ES';

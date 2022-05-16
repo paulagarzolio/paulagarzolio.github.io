@@ -8,10 +8,10 @@ class Block{
 }
 	typeSrc(){
 		if(this.type=="question"){
-			return "question.png"
+			return "content/question.png"
 		}
 		if(this.type.slice(0, 6)=="answer"){
-			return "answer.png"
+			return "content/answer.png"
 		}
 	}
 	getNumerator(){

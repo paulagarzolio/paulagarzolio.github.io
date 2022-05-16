@@ -138,8 +138,6 @@ var Round2= {
 		}
 		
 		
-		// xInic = cardPosx;
-		// yInic = cardPosy;
 	},
 	goToPos: function(){
 		var left = parseInt(this.actualCardDOM.style.left, 10);
@@ -166,12 +164,6 @@ var Round2= {
 			var card = Round2.actualCardDOM;
 			var position = Round2.getPosicion(card);
 			card.style.left = (position[1] + xInc) + "px";
-			// if (position[1]+xInc<Round2.cardPosx){
-			// 	card.style.backgroundColor=Round2.ui_colors.left;
-			// }
-			// if (position[1]+xInc>Round2.cardPosx){
-			// 	card.style.backgroundColor=Round2.ui_colors.right;
-			// }
 			var pos = position[1];
 			if(pos>that.reject.left-100 && (pos+310-100)<that.reject.right){
 				//card is rejected!
@@ -184,12 +176,6 @@ var Round2= {
 			else{
 				card.style.backgroundColor=Round2.ui_colors.standard;
 			}
-			// if(position[1]+xInc<180 || position[1]+xInc>540)
-			// {
-			// 	done = true;  
-			// 	card.style.display="none";
-			   
-			// }
 		}
 	},
 	lerp:function (a,b,f)
@@ -209,7 +195,6 @@ var Round2= {
 		  vertDir="+=200px";
 		};
 	  
-		 //console.log(cardColor);
 		  card.animate({
 			left: hrzDir,
 			top: vertDir,
@@ -234,8 +219,6 @@ var Round2= {
 		xInic = evt.clientX;
 		yInic = evt.clientY;    
 		estaPulsado = true;
-		//Para Internet Explorer: Contenido no seleccionable
-		//this.actualCard.unselectable = true;
 	}
 
 };

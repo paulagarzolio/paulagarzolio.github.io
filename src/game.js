@@ -8,21 +8,20 @@ var Game={
 	db: [],
 	domElement: 0,
 	actualQuestion:0,
-	file: "src/questions.txt",
 	test: {
 		ESPAÑOL: [
 			{
-				question: "¿Cúal es la red social que daña mas la opinion que  los usuarios  tienen de su cuerpo?",
+				question: "¿Cuál es la red social que daña más la opinión que  los usuarios  tienen de su cuerpo?",
 				answers: ["Instagram","Facebook","Twitter","Snapchat"],
 				correct:0
 			 },
 			 {
-				question: "¿Cúal es el símbolo de los likes en Instagram?",
+				question: "¿Cuál es el símbolo de los likes en Instagram?",
 				answers: ["Pulgar","Corazón","Estrella","Ninguno de los anteriores"],
 				correct:1
 			 },
 			 {
-				question: "¿Cuántos usuarios activos hay en Instagram hoy en dia?",
+				question: "¿Cuántos usuarios activos hay en Instagram hoy en día?",
 				answers: ["100 mil","45 millones","3.6 billones","45 billones"],
 				correct:2
 			 },
@@ -38,7 +37,7 @@ var Game={
 			 	correct:2
 			 },
 			 {
-			 	question: "¿Cuál es el colectivo más afectado por los problemas relacionados con el Body Image?",
+			 	question: "¿Cuál es el colectivo más afectado por los problemas relacionados con una mala imagen corporal?",
 			 	answers: ["Chicas adolescentes","Mujeres","Hombres","Chicos adolescentes"],
 			 	correct:0
 			},
@@ -49,7 +48,7 @@ var Game={
 		   },
 		   {
 				question: "¿Cuál es el principal trastorno que se ve afectado por una mala percepción de la imagen corporal?",
-				answers: ["Depresión","Transtornos alimentarios","Hiperactividad","Ansiedad"],
+				answers: ["Depresión","Trastornos alimentarios","Hiperactividad","Ansiedad"],
 				correct:1
 	  	  },
 			{
@@ -78,7 +77,7 @@ var Game={
 				correct:1
 			 },
 			 {
-				question: "¿Quién es el dueño de Facebook, Instagram y Whatsapp?",
+				question: "¿Quién es el dueño de Facebook, Instagram y WhatsApp?",
 				answers: ["Mark Zuckerberg","Steve Jobs","Leo Messi","Elon Musk"],
 				correct:0
 			 },
@@ -120,7 +119,7 @@ var Game={
 			 
 			 {
 				question: "How many images are uploaded every hour in Instagram?",
-				answers: ["200 milion","10 thousand","10 milion","500 thousand"],
+				answers: ["200 milLion","10 thousand","10 milLion","500 thousand"],
 				correct:2
 			},
 			 {
@@ -145,7 +144,7 @@ var Game={
 			},
 			{
 				question: "Which of the following social media has a positive effect on the mental health of young users?",
-				answers: ["Snapchat","TikTok","Youtube","Instagram"],
+				answers: ["Snapchat","TikTok","YouTube","Instagram"],
 				correct:2
 			},
 			{
@@ -159,12 +158,12 @@ var Game={
 				correct:2
 			 },
 			 {
-				question: "Who has the most number of followers in Instagram?",
+				question: "Who has the most number of followers on Instagram?",
 				answers: ["Kylie Jenner","Cristiano Ronaldo","Leo Messi","Dulceida"],
 				correct:1
 			 },
 			 {
-				question: "Who is the owner of Facebook, Instagram and Whatsapp?",
+				question: "Who is the owner of Facebook, Instagram, and WhatsApp?",
 				answers: ["Mark Zuckerberg","Steve Jobs","Leo Messi","Elon Musk"],
 				correct:0
 			 },
@@ -174,8 +173,8 @@ var Game={
 				correct:3
 			 },
 			 {
-				question: "What kind of content recibes the most number of likes and comments in men's posts?",
-				answers: ["Muscularity and leannes","Food photos","Selfies","Travel photos"],
+				question: "What kind of content receive the most number of likes and comments in men's posts?",
+				answers: ["Muscularity and leanness","Food photos","Selfies","Travel photos"],
 				correct:0
 			 }
 			 
@@ -187,7 +186,7 @@ var Game={
 	lastQuestion:0,
 
 	initLives: function(){
-		var src ="life.png"
+		var src ="content/life.png"
 		for(var i=0; i<3;i++){
 			var live = document.createElement("img");
 			live.className = "life";
@@ -206,7 +205,7 @@ var Game={
 			ENGLISH: "Correct. Very good!"
 		}
 		div.children[0].innerHTML =resLang[Game.language];
-		div.children[1].src="correct.gif";
+		div.children[1].src="content/correct.gif";
 		div.children[1].style.width="750px"
 	},
 	showIncorrect: function(){
@@ -220,7 +219,7 @@ var Game={
 			ENGLISH: "Incorrect... Try again!"
 		}
 		div.children[0].innerHTML =resLang[Game.language];
-		div.children[1].src="incorrect.gif";
+		div.children[1].src="content/incorrect.gif";
 		div.children[1].style.width="550px"
 	},
 	incorrectAnswer: function(){
@@ -229,7 +228,7 @@ var Game={
 		this.level=0;
 		var levelsDOM=query("#NextQuestion #classification");
 		var index=0;
-		//setTimeout(function(){levelsDOM.children[total_levels-1].style.backgroundColor="#1064D4";},4000);
+
 		for (var i=actualLevel; i<total_levels;i++){
 			var level = i;
 			var time=4200+1000*(index);
@@ -240,7 +239,7 @@ var Game={
 			Game.db.initialState(Game.level);
 			Game.lives--;
 			var liveDOM = Game.livesDOM.children[Game.lives];
-			liveDOM.src = "lostlife.png";
+			liveDOM.src = "content/lostlife.png";
 			if(Game.lives==0){
 				console.log("Juego TERMINADO");
 				Game.round=2;
@@ -260,24 +259,23 @@ var Game={
 		this.level++;
 		var total_levels = this.db.levels.length-1
 		var level = total_levels-this.level;
-		var levelsDOM=query("#NextQuestion #classification");
-		setTimeout(function(){levelsDOM.children[level].style.backgroundColor="#1ABFB5";},4200);
-		setTimeout(function(){Game.db.goToLevel(Game.level)},4000);
 		if(this.level>total_levels){
 			console.log("Juego TERMINADO");
 			Game.round=2;
 			setTimeout(showResults,3000);
+			return
 		}
+		var levelsDOM=query("#NextQuestion #classification");
+		setTimeout(function(){levelsDOM.children[level].style.backgroundColor="#1ABFB5";},4200);
+		setTimeout(function(){Game.db.goToLevel(Game.level)},4000);
 
 	},
 	showPresentation: function(url){
-		// var audioContext2 = window.AudioContext          // Default
-        //       || window.webkitAudioContext; 
 		var audio1 = document.createElement('audio');
-		audio1.src= "presentacion.mov";
+		query("body").appendChild(audio1);
+		audio1.src= "content/presentacion.mov";
 		audio1.id="audioPresentation";
 		audio1.loop = false;
-		query("body").appendChild(audio1);
 		audio1.play();
 		var div=query("#Presentation");
 		query("#Round1").style.display="none";
@@ -291,7 +289,7 @@ var Game={
 			query("#audioPresentation").pause();
 			query("#audioPresentation").remove();
 			Game.showPresentation2();
-		},4000);
+		},6000);
 
 		
 	},
@@ -311,9 +309,9 @@ var Game={
 		var mess = {
 			ESPAÑOL:  'En esta prueba deberás enfrentarte a una serie de preguntas en las que solo una respuesta es correcta. \
 			Tras cada pregunta irás subiendo de nivel, pero si te equivocas tendrás que volver a empezar y perderás todos los "me gusta" ganados. \
-			Tendrás tan solo 3 vidas para poder demostrar cuanto sabes de redes sociales, Imagen Corporal, influencers... Aprovéchalas!',
-			ENGLISH: 'In this challenge you will have to answer some questions in which only one answer is correct. If you answer correctly the questions \
-			you will scale to the next level but if you fail you will have to restart and lose all the likes. You will have only 3 lives to demonstrate\
+			Tendrás únicamente 3 vidas para poder demostrar cuanto sabes de redes sociales, Imagen Corporal, influencers... Aprovéchalas!',
+			ENGLISH: 'In this challenge, you will have to answer some questions in which only one answer is correct. If you answer correctly the questions \
+			you will scale to the next level, but if you fail you will have to restart and lose all the likes. You will have only 3 lives to demonstrate\
 			 how much you know about social media, body image, influencers, etc.'
 		};
 		message.innerHTML = mess[Game.language];
@@ -344,7 +342,7 @@ var Game={
 		query("#Presentation").style.display="none";
 		query("#Round1").style.display="grid";
 		body=query("body");
-		body.style.background="url(fondoMistico2.jpg)";
+		body.style.background="url(content/fondoMistico2.jpg)";
 		body.style.backgroundRepeat="no-repeat";
 		body.style.backgroundPosition="center 0px";
 		
@@ -396,8 +394,6 @@ function showLevelUp(time=0){
 	else{
 		console.log("Juego TERMINADO");
 		Game.round=2;
-		//query("#Presentation img").remove();
-		//Game.showPresentation("round2.png");
 		
 		setTimeout(showResults,4000);
 	}
@@ -415,7 +411,7 @@ function showResults(){
 	div.id="Classification";
 	div2.id ="leftPicture";
 	var image = document.createElement("img");
-	image["src"]="results.png";
+	image["src"]="content/results.png";
 	var avatar = query(".avatar_").cloneNode();
 	avatar.style.height= "55%";
 	avatar.style.marginTop= "20px";
@@ -432,10 +428,13 @@ function showResults(){
 	div2.appendChild(avatar);
 	div.appendChild(div2);
 	query("#Result").style.display="none";
+	var likes;
+	if(Game.level==0)likes= 0;
+	else likes= Game.db.levels[8-Game.level].name;
 	var dialogues = {
 		ESPAÑOL: [
 			{
-				intro: ["Felicidades, has llegado hasta los "+Game.db.levels[7-Game.level].name+" me gusta."],
+				intro: ["Felicidades, has llegado hasta los "+likes+" me gusta."],
 				answers: ""
 				
 			},
@@ -446,7 +445,7 @@ function showResults(){
 		],
 		ENGLISH: [
 			{
-				intro: ["Congratulations, you have gained "+Game.db.levels[7-Game.level].name+" likes."],
+				intro: ["Congratulations, you have gained "+likes+" likes."],
 				answers: ""
 				
 			},
@@ -457,14 +456,14 @@ function showResults(){
 		]
 			
 	}
-	Game.points=Game.db.levels[7-Game.level].name;
+	Game.points=likes;
 	Dialogue.messages=[];
 	Dialogue.nextMessage=function(){
 		var that= Dialogue;
 		if(that.actualMessage==that.messages.length){
 			Game.showPresentation();
 
-			query("#Presentation").style.backgroundImage="url('round2.png')";
+			query("#Presentation").style.backgroundImage="url('content/round2.png')";
 			query("#Presentation").children[0].remove();
 			query("#Presentation").children[0].remove();
 			query("#Presentation").children[0].remove();
@@ -483,9 +482,9 @@ function showResults(){
 				title.className="title";
 				var text =document.createElement("div");
 				var lang = {
-					ESPAÑOL: "En este reto deberás jugar al juego Yo Nunca Nunca. \nIrán apareciendo una serie de cartas con cosas que pueden o no haberte pasado en redes sociales. Deberás arrastrar la carta a la derecha si las has hecho o hacia la izquierda si no.",
+					ESPAÑOL: 'En este reto deberás jugar al juego "Yo Nunca Nunca". \nIrán apareciendo una serie de cartas con cosas que pueden o no haberte pasado en redes sociales. Deberás arrastrar la carta a la derecha si las has hecho o hacia la izquierda si no.',
 
-					ENGLISH: "In this challenge you will have to play the game Never Have I ever.\n You will find different cards that you will have to classify as done or not done depending if they have happened to you in social media. You will have to drag them left or right."
+					ENGLISH: 'In this challenge, you will have to play the game "Never Have I ever".\n You will find different cards that you will have to classify as done or not done depending on if they have happened to you on social media. You will have to drag them left or right.'
 				}
 				text.innerHTML=lang[Game.language];
 				text.className ="Info";
@@ -493,7 +492,7 @@ function showResults(){
 				text.style.transform="translateY(50%)";	
 				text.style.textAlign="center";
 				var img = document.createElement("img");
-				img.src="GIF.gif";
+				img.src="content/GIF.gif";
 				img.style.height="320px";
 				img.style.marginTop= "10%";
 				divPres.appendChild(text);
@@ -501,7 +500,7 @@ function showResults(){
 				speakDescription(text.innerHTML);
 				setTimeout(initSecondGame,14000);
 
-			},4000);
+			},6000);
 			return
 		}
 		var actMessage=that.messages[that.actualMessage];
@@ -543,26 +542,18 @@ function onClickAnswer(){
 	var img = this.children[0];
 	var audioContext = window.AudioContext          // Default
               || window.webkitAudioContext;  // Safari and old versions of Chrome
-	//this.audioContext = new AudioContext();
-	//load audio
-	// var audio2 = document.createElement('audio');
-	// audio2.id="audioRedoble";
-	// query("body").appendChild(audio2);
-	// audio2.src="redoble.mp3";
-	// audio2.loop=false;
-	// audio2.play();
 	
 	var audio1 = document.createElement('audio');
-	audio1.src= "redoble.mov";
+	audio1.src= "content/redoble.mov";
 	audio1.id="audioAnswer";
 	audio1.play();
 	query("body").appendChild(audio1);
 	if(Game.db.questions[Game.actualQuestion].isCorrect(this.id)){
 		setTimeout(function(){query("#audioAnswer").pause();
-		img.src="correct.png"; 
+		img.src="content/correct.png"; 
 		},1800);
 		setTimeout(function(){
-			audio1.src = "correcto.mov";
+			audio1.src = "content/correcto.mov";
 			audio1.loop = false;
 			audio1.play();
 			Game.showCorrect();
@@ -578,11 +569,11 @@ function onClickAnswer(){
 		var correct = "#"+questionDom.correctAnswer+" img";
 		setTimeout(function(){
 			query("#audioAnswer").pause();
-			img.src="incorrect.png";
-			query(correct).src="correct.png";
+			img.src="content/incorrect.png";
+			query(correct).src="content/correct.png";
 			},1800);
 		setTimeout(function(){
-			audio1.src = "incorrecto.mov";
+			audio1.src = "content/incorrecto.mov";
 			audio1.loop = false;
 			audio1.play();
 			Game.showIncorrect();
@@ -591,15 +582,14 @@ function onClickAnswer(){
 			showLevelUp(1000*(Game.level+1));
 			query("#audioAnswer").pause();
 			query("#audioAnswer").remove();
-		},5300);
+		},5500);
 		
 	}
-	//setTimeout(showNextQuestion,3000);
 }
 
 function juegoTerminado(){
 	console.log("Juego Terminado");
-	query("body").style.backgroundImage="url('background.jpg')";
+	query("body").style.backgroundImage="url('content/background.jpg')";
 	query("#Round2").style.display="none";
 	var div=query("#finalScreen").cloneNode(true);
 	var text = {
@@ -607,12 +597,14 @@ function juegoTerminado(){
 			"BIEN HECHO!",
 			"Has conseguido",
 			"me gusta!",
-			"Porfavor, contesta este cuestionario antes de irte :)"
+			"Después de jugar a este minijuego te habrás dado cuenta de lo mucho que influyen las redes sociales en la percepción de nuestra imagen corporal. Son muchos los factores a los que estamos expuestos todos los días y que sin darnos cuenta nos hacen actuar de una manera que puede afectarnos no solo a nosotros mismos sino también a otros usuarios. Es por eso que tú eres la única persona capaz de convertir las redes sociales en un lugar mejor en el que todo el mundo tiene un sitio sin importar su aspecto físico. Y sobre todo ten en cuenta que todo lo que ves en las redes sociales no siempre es la realidad.",
+			"Por favor, contesta este cuestionario antes de irte :)"
 		],
 		ENGLISH: [
 			"WELL DONE!",
 			"You have reached",
 			"likes!",
+			"After playing this mini-game you will have realized how much social networks influence the perception of our body image. There are many factors to which we are exposed every day and that without realizing it make us act in a way that can affect not only ourselves but also other users. That is why you are the only person capable of turning social networks into a better place where everyone has a place, regardless of their physical appearance. And above all, keep in mind that everything you see on social networks is not always reality.",
 			"Please, before leaving answer this questionnaire :)"
 		]
 	}
@@ -620,6 +612,7 @@ function juegoTerminado(){
 	div.children[1].innerHTML=text[Game.language][1];
 	div.children[3].innerHTML=text[Game.language][2];
 	div.children[4].innerHTML=text[Game.language][3];
+	div.children[5].innerHTML=text[Game.language][4];
 	query("body").appendChild(div)
 	div.style.display="";
 	var contDiv= div.children[2];
